@@ -1,8 +1,5 @@
 package dtu.project.log4jboot2root;
 
-import org.apache.tomcat.util.file.ConfigurationSource;
-import org.springframework.boot.autoconfigure.web.ServerProperties;
-import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.ui.Model;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -16,7 +13,7 @@ import java.io.UncheckedIOException;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
-@RestController
+@org.springframework.stereotype.Controller
 public class Controller {
     ResourceLoader loader;
 
@@ -36,10 +33,10 @@ public class Controller {
         return "ticket";
     }
 
-    @PostMapping("16144cf950518a312e26b9827d91449d166ed6e38e7cc569a9f3c559")
+    @PostMapping("/16144cf950518a312e26b9827d91449d166ed6e38e7cc569a9f3c559")
     public String ticketSubmit(@ModelAttribute Ticket ticket, Model model){
         model.addAttribute("ticket", ticket);
-        return "result";
+        return "ticketResult";
     }
 
     public static String asString(Resource resource) {
