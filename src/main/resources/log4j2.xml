@@ -7,10 +7,16 @@
             -->
             <PatternLayout pattern="[%t] %m %n"/>
         </Console>
+        <File name="log" fileName="logs/tickets.log">
+            <PatternLayout>
+                <Pattern>[%t] %m %n</Pattern>
+            </PatternLayout>
+        </File>
     </Appenders>
     <Loggers>
         <Root level="info">
             <AppenderRef ref="Console"/>
+            <AppenderRef ref="log"/>
         </Root>
     </Loggers>
 </Configuration>
