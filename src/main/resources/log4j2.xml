@@ -9,7 +9,8 @@
         </Console>
         <File name="log" fileName="logs/tickets.log">
             <PatternLayout>
-                <Pattern>[%t] %m %n</Pattern>
+                <Pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n
+                </Pattern>
             </PatternLayout>
         </File>
     </Appenders>

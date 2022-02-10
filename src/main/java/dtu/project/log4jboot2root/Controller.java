@@ -22,9 +22,9 @@ public class Controller {
 
     @GetMapping("/hello")
     public String index() {
-        return ("Hello World!");
+        return ("helloWorld");
     }
-    @RequestMapping("/test")
+
     public String robots(){
         Resource resource = loader.getResource("classpath:static/robots.txt");
         return asString(resource);
