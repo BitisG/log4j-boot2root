@@ -5,11 +5,11 @@
             <!--
             <PatternLayout pattern="[%t] %m{nolookups} %n"/>
             -->
-            <PatternLayout pattern="[%t] %m %n"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %m %n"/>
         </Console>
         <File name="log" fileName="logs/tickets.log">
             <PatternLayout>
-                <Pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n
+                <Pattern>%d{HH:mm:ss.SSS} [%t] %-5level - %msg%n
                 </Pattern>
             </PatternLayout>
         </File>
