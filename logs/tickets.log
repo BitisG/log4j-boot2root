@@ -1,0 +1,32 @@
+14:58:17.984 [main] INFO  dtu.project.log4jboot2root.Log4jBoot2rootApplication - Starting Log4jBoot2rootApplication using Java 17 on DESKTOP-I2Q1AE1 with PID 1796 (C:\Users\jakob\OneDrive\Documents\DTU\6. Semester\Bahcelor\Project\log4j-boot2root\target\classes started by jakob in C:\Users\jakob\OneDrive\Documents\DTU\6. Semester\Bahcelor\Project\log4j-boot2root)
+14:58:17.997 [main] INFO  dtu.project.log4jboot2root.Log4jBoot2rootApplication - No active profile set, falling back to default profiles: default
+14:58:18.833 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+14:58:18.851 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+14:58:18.855 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+14:58:18.856 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.56]
+14:58:18.938 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+14:58:18.938 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 892 ms
+14:58:19.217 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+14:58:19.257 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+14:58:19.265 [main] INFO  dtu.project.log4jboot2root.Log4jBoot2rootApplication - Started Log4jBoot2rootApplication in 1.663 seconds (JVM running for 2.493)
+14:58:25.806 [http-nio-8080-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+14:58:25.807 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+14:58:25.808 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+14:58:34.333 [http-nio-8080-exec-2] WARN  dtu.project.log4jboot2root.Controller - [+] ticket id: 0 Content: JesusTakeTheWheel
+15:00:48.169 [http-nio-8080-exec-5] WARN  dtu.project.log4jboot2root.Controller - [+] ticket id: 1 Content: JesusTookTheWheel
+15:11:09.053 [main] INFO  dtu.project.log4jboot2root.Log4jBoot2rootApplication - Starting Log4jBoot2rootApplication using Java 17 on DESKTOP-I2Q1AE1 with PID 9528 (C:\Users\jakob\OneDrive\Documents\DTU\6. Semester\Bahcelor\Project\log4j-boot2root\target\classes started by jakob in C:\Users\jakob\OneDrive\Documents\DTU\6. Semester\Bahcelor\Project\log4j-boot2root)
+15:11:09.053 [main] INFO  dtu.project.log4jboot2root.Log4jBoot2rootApplication - No active profile set, falling back to default profiles: default
+15:11:09.909 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+15:11:09.940 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+15:11:09.940 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+15:11:09.940 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.56]
+15:11:10.019 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+15:11:10.019 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 922 ms
+15:11:10.331 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+15:11:10.394 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+15:11:10.409 [main] INFO  dtu.project.log4jboot2root.Log4jBoot2rootApplication - Started Log4jBoot2rootApplication in 1.945 seconds (JVM running for 2.896)
+15:11:41.367 [http-nio-8080-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+15:11:41.367 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+15:11:41.367 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+15:11:41.423 [http-nio-8080-exec-1] WARN  dtu.project.log4jboot2root.Controller - [+] ticket id: 1 Content: JesusTookTheWheel
+15:11:47.479 [http-nio-8080-exec-3] WARN  dtu.project.log4jboot2root.Controller - [+] ticket id: 0 Content: Walla
