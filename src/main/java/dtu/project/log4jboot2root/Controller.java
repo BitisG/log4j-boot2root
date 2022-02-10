@@ -1,5 +1,7 @@
 package dtu.project.log4jboot2root;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.ui.Model;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -16,6 +18,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 @org.springframework.stereotype.Controller
 public class Controller {
     ResourceLoader loader;
+    private static final Logger logger = LogManager.getLogger(Controller.class);
 
     @GetMapping("/hello")
     public String index() {
@@ -34,7 +37,7 @@ public class Controller {
     }
 
     @PostMapping("/16144cf950518a312e26b9827d91449d166ed6e38e7cc569a9f3c559")
-    public String ticketSubmit(@ModelAttribute Ticket ticket, Model model){
+    public String ticketReceive(@ModelAttribute Ticket ticket, Model model){
         model.addAttribute("ticket", ticket);
         return "ticketResult";
     }
