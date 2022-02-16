@@ -1,0 +1,12 @@
+To compile the project yourself,compile the project into a jar in intellij with the command: 
+./mvnw package; java -jar target/log4j-boot2root-0.0.1-SNAPSHOT.jar
+
+or in the commandline if you choose to do so. Otherwise we provide a jar that you can run without compiling anything.
+
+then you need to build the docker image. We have already provided a dockerfile, so you need to run the commands:
+docker build -t project/log4j-boot2root-docker .
+docker run -p 8080:8080 project/log4j-boot2root-docker
+
+This will launch the application in docker
+
+You can view the application by entering localhost:8080 in the searchbar of your searchengine.
