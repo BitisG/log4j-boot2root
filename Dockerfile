@@ -1,4 +1,5 @@
-FROM openjdk:17-jdk-alpine
+FROM openjdk:8-jdk-alpine
+EXPOSE 8080
 RUN addgroup -S peter && adduser -S peter -G peter -
 USER peter
 WORKDIR /home/peter
