@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine
+FROM openjdk:8u181-jre-alpine
 RUN addgroup -S peter && adduser -S peter -G peter -
 USER peter
 WORKDIR /home/peter
