@@ -2,6 +2,7 @@ package dtu.project.log4jboot2root;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.ui.Model;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -17,6 +18,8 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 
 @org.springframework.stereotype.Controller
 public class Controller {
+
+    JdbcTemplate SQLDataLoader;
     ResourceLoader loader;
     private static final Logger logger = LogManager.getLogger();
 
@@ -26,6 +29,7 @@ public class Controller {
     }
 
     public String robots(){
+
         Resource resource = loader.getResource("classpath:static/robots.txt");
         return asString(resource);
     }
