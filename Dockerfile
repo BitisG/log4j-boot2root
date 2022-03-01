@@ -1,5 +1,7 @@
 FROM openjdk:8u181-jre-alpine
-RUN addgroup -S peter && adduser -S peter -G peter -
+RUN apk add bash \
+  && apk add sudo 
+RUN addgroup -S peter && adduser -S peter -G peter -s /bin/bash
 USER peter
 WORKDIR /home/peter
 ARG JAR_FILE=*.jar
