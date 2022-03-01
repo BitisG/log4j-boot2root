@@ -1,8 +1,10 @@
-FROM openjdk:8-jdk-alpine
-EXPOSE 8080
-RUN addgroup -S peter && adduser -S peter -G peter -
+FROM openjdk:8u181-jre-alpine
+RUN apk add bash \
+  && apk add sudo 
+RUN addgroup -S peter && adduser -S peter -G peter -s /bin/bash
 USER peter
 WORKDIR /home/peter
 ARG JAR_FILE=*.jar
 COPY ${JAR_FILE} app.jar
+EXPOSE 8080
 ENTRYPOINT ["java","-jar","app.jar"]

