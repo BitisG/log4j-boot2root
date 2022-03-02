@@ -20,6 +20,7 @@ import java.io.UncheckedIOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Base64;
+import java.util.Collections;
 import java.util.List;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -59,7 +60,7 @@ public class Controller {
     public RedirectView loggingIn(@ModelAttribute User user, Model model){
         model.addAttribute("user", user);
 
-        String sql = "SELECT USER_ID, ENCRYPTED_PASSWORD FROM APP_USER WHERE USER_NAME = " + user.getUsername();
+        String sql = "SELECT USER_ID, ENCRYPTED_PASSWORD FROM APP_USER WHERE USER_NAME = \"" + user.getUsername() + "\"";
 
         List<User> r = SQLDataLoader.query(sql, new RowMapper<User>() {
             @Override
