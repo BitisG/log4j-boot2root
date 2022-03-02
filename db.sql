@@ -1,4 +1,3 @@
-create database app;
 use app;
 
 create table APP_USER
@@ -62,7 +61,6 @@ CREATE TABLE Persistent_Logins (
     
 );
 
---------------------------------------
 
 insert into APP_USER(USER_ID, USER_NAME, ENCRYPTED_PASSWORD, ENABLED)
 values (2, 'peter', '$2a$10$WF0yYWhl4kZDEWbvC3CoMeUFOB2AK/Yr0oMSO9UA3hYEb86vGRSFy', 1);
@@ -70,7 +68,6 @@ values (2, 'peter', '$2a$10$WF0yYWhl4kZDEWbvC3CoMeUFOB2AK/Yr0oMSO9UA3hYEb86vGRSF
 insert into APP_USER(USER_ID, USER_NAME, ENCRYPTED_PASSWORD, ENABLED)
 values (1, 'admin', '$2a$10$lFqaUPk9PWyjxZponWuc0ecYgQuaJP3WqfDlvMHUytykMB3md6RI2', 1);
 
----
 
 insert into APP_ROLE (ROLE_ID, ROLE_NAME)
 values (1, 'ROLE_ADMIN');
@@ -78,7 +75,6 @@ values (1, 'ROLE_ADMIN');
 insert into APP_ROLE (ROLE_ID, ROLE_NAME)
 values (2, 'ROLE_USER');
 
----
 
 insert into USER_ROLE (ID, USER_ID, ROLE_ID)
 values (1, 1, 1);
