@@ -13,12 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.sql.DataSource;
-import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UncheckedIOException;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Base64;
@@ -32,9 +30,9 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public class Controller {
 
     public DataSource getDataSource() {
-        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
+        DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("com.mysql.jdbc.Driver");
-        dataSourceBuilder.url("jdbc:mysql://docker-mysql:3306/app");
+        dataSourceBuilder.url("jdbc:mysql://database:3306/app&autoReconnect=true&useSSL=false");
         dataSourceBuilder.username("peter");
         dataSourceBuilder.password("strongpassword");
         System.out.println("Building dataSource");
