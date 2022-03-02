@@ -37,6 +37,7 @@ public class Controller {
         dataSourceBuilder.url("jdbc:mysql://docker-mysql:3306/app");
         dataSourceBuilder.username("peter");
         dataSourceBuilder.password("strongpassword");
+        System.out.println("Building dataSource");
         return dataSourceBuilder.build();
     }
 
