@@ -32,7 +32,7 @@ public class Controller {
     public DataSource getDataSource() {
         DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("com.mysql.jdbc.Driver");
-        dataSourceBuilder.url("jdbc:mysql://database:3306/app&autoReconnect=true&useSSL=false");
+        dataSourceBuilder.url("jdbc:mysql://database:3306/app");
         dataSourceBuilder.username("peter");
         dataSourceBuilder.password("strongpassword");
         System.out.println("Building dataSource");
