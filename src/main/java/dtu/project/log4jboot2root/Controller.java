@@ -35,8 +35,8 @@ public class Controller {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("com.mysql.jdbc.Driver");
         dataSourceBuilder.url("jdbc:mysql://docker-mysql:3306/app");
-        dataSourceBuilder.username("admin");
-        dataSourceBuilder.password("reallystrongpassword");
+        dataSourceBuilder.username("peter");
+        dataSourceBuilder.password("strongpassword");
         return dataSourceBuilder.build();
     }
 
