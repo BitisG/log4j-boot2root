@@ -34,7 +34,7 @@ public class Controller {
     public DataSource getDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("com.mysql.jdbc.Driver");
-        dataSourceBuilder.url("jdbc:mysql://localhost:3306/app");
+        dataSourceBuilder.url("jdbc:mysql://docker-mysql:3306/app");
         dataSourceBuilder.username("admin");
         dataSourceBuilder.password("reallystrongpassword");
         return dataSourceBuilder.build();
@@ -80,7 +80,6 @@ public class Controller {
             else
                 return new RedirectView("/hello");
         }
-
     }
 
     public String robots(){
