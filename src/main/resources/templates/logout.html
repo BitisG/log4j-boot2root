@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Logout</title>
+</head>
+<body>
+<!--/login?error=true-->
+<div th:if="${#request.getParameter('success') == 'true'}"
+     style="color:deepskyblue;margin:10px 0px">
+    Logout successful
+</div>
+</body>
+</html>

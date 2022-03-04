@@ -1,15 +1,32 @@
 <!DOCTYPE HTML>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
-  <title>Login handler</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Login handler</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
 <h1>Login</h1>
-<form action="#" th:action="@{/login}" th:object="${user}" method="post">
-  <p>Username: <input type="text" th:field="*{username}" /></p>
-  <p>Message: <input type="text" th:field="*{password}" /></p>
-  <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+<!--/login?error=true-->
+<div th:if="${#request.getParameter('error') == 'true'}"
+     style="color:crimson;margin:10px 0px">
+    Login failed
+</div>
+
+<h3>Enter username and password</h3>
+<form name='form' th:action="@{/j_spring_security_check}" method="post">
+    <table>
+        <tr>
+            <td>Username:</td>
+            <td><input type="text" name="username" value=""></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" name="password"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" name="submit" value="submit"></td>
+        </tr>
+    </table>
 </form>
 </body>
 </html>

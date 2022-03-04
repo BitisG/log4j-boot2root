@@ -5,24 +5,24 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.security.core.Authentication;
 import org.springframework.ui.Model;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
-
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UncheckedIOException;
+import java.security.Principal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Base64;
 import java.util.Collections;
 import java.util.List;
-
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 
@@ -45,19 +45,31 @@ public class Controller {
     ResourceLoader loader;
     private static final Logger logger = LogManager.getLogger();
 
-    @GetMapping("/hello")
-    public String index() {
-        return ("helloWorld");
+    @GetMapping(value = {"/hello", "/"})
+    public String index(Model model) {
+        return ("WelcomePage");
+    }
+
+    @GetMapping
+    public String adminPage(Model model) {
+        model.addAttribute("title", "admin page");
+        return "adminPage";
     }
 
     @GetMapping("/login")
-    public String loginPage(Model model){
-        model.addAttribute("user", new User());
+    public String loginPage(Model model) {
+        model.addAttribute("title", "login");
         return "login";
     }
 
-    @PostMapping("/login")
-    public RedirectView loggingIn(@ModelAttribute User user, Model model){
+    @GetMapping
+    public String logout(Model model) {
+        model.addAttribute("title", "logout");
+        return "logout";
+    }
+
+    /* @PostMapping("/login")
+    public RedirectView loggingIn(@ModelAttribute User user, Model model) {
         model.addAttribute("user", user);
 
         String sql = "SELECT USER_ID, ENCRYPTED_PASSWORD FROM APP_USER WHERE USER_NAME = \"" + user.getUsername() + "\"";
@@ -80,6 +92,16 @@ public class Controller {
             else
                 return new RedirectView("/hello");
         }
+    } */
+
+    @GetMapping("/denied")
+    public String denied(Model model, User user) {
+        if (user.getUsername() != null) {
+            model.addAttribute("message", "Hi " + user.getUsername() + "you do not have access to this page");
+        } else {
+            model.addAttribute("message", "You do not have access to this page!");
+        }
+        return "denied";
     }
 
     public String robots(){
@@ -87,13 +109,13 @@ public class Controller {
         return asString(resource);
     }
 
-    @GetMapping("/16144cf950518a312e26b9827d91449d166ed6e38e7cc569a9f3c559")
+    @GetMapping("/create_ticket")
     public String ticketForm(Model model){
         model.addAttribute("ticket", new Ticket());
         return "ticket";
     }
 
-    @PostMapping("/16144cf950518a312e26b9827d91449d166ed6e38e7cc569a9f3c559")
+    @PostMapping("/create_ticket")
     public String ticketReceive(@ModelAttribute Ticket ticket, Model model){
         model.addAttribute("ticket", ticket);
         logger.warn("[+] ticket id: " + ticket.getId() + " Content: " + ticket.getContent());
