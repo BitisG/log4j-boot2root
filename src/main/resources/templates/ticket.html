@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Form</h1>
-<form action="#" th:action="@{/16144cf950518a312e26b9827d91449d166ed6e38e7cc569a9f3c559}" th:object="${ticket}" method="post">
+<form action="#" th:action="@{/create_ticket}" th:object="${ticket}" method="post">
     <p>Id: <input type="text" th:field="*{id}" /></p>
     <p>Message: <input type="text" th:field="*{content}" /></p>
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
