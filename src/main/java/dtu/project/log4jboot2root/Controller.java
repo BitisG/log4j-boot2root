@@ -32,7 +32,7 @@ public class Controller {
     }
 
 
-    JdbcTemplate SQLDataLoader = new JdbcTemplate(getDataSource());
+    //JdbcTemplate SQLDataLoader = new JdbcTemplate(getDataSource());
     ResourceLoader loader;
     private static final Logger logger = LogManager.getLogger();
 

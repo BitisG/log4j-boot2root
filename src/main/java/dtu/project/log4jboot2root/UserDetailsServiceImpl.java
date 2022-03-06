@@ -40,8 +40,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 grants.add(authority);
             }
         }
-        UserDetails userDetails = (UserDetails) new User(appUser.getUsername(), appUser.getEncryptedPassword(), grants);
 
-        return userDetails;
+        return (UserDetails) new User(appUser.getUsername(), appUser.getEncryptedPassword(), grants);
     }
 }
