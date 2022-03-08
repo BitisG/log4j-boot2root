@@ -8,9 +8,9 @@ services:
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://docker-mysql:3306/app
     depends_on:
-      - database
+      - docker-mysql
 
-  database:
+  docker-mysql:
     image: mysql:5.7
     volumes:
       - ./db.sql:/docker-entrypoint-initdb.d/1-dump.sql
