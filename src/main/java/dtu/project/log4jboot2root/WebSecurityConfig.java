@@ -11,8 +11,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
+@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
-    /*
+
     @Autowired
     UserDetailsServiceImpl userDetailsService;
 
@@ -37,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         //Requires user or admin
         http.authorizeRequests().antMatchers("/internal").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
 
-        //http.authorizeRequests().antMatchers("/create_ticket","/admin").access("hasRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/create_ticket","/admin").access("hasRole('ROLE_ADMIN')");
 
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/denied");
 
@@ -49,6 +50,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .passwordParameter("password")
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/logout?success=true");
     }
-
-     */
 }
