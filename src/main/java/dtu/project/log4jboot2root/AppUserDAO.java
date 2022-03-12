@@ -23,8 +23,7 @@ public class AppUserDAO extends JdbcDaoSupport {
         Object[] params = new Object[] {username};
         AppUserMapper mapper = new AppUserMapper();
         try {
-            AppUser appUser = this.getJdbcTemplate().queryForObject(sql, params, mapper);
-            return appUser;
+            return this.getJdbcTemplate().queryForObject(sql, params, mapper);
         } catch (Exception e) {
             return null;
         }

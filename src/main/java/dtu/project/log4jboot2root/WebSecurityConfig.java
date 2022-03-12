@@ -3,7 +3,6 @@ package dtu.project.log4jboot2root;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -19,8 +18,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        return bCryptPasswordEncoder;
+        return new BCryptPasswordEncoder();
     }
 
     @Override
@@ -38,17 +36,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         //Requires user or admin
         http.authorizeRequests().antMatchers("/internal").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
 
-        http.authorizeRequests().antMatchers("/create_ticket","/admin").access("hasRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/createTicket","/admin").access("hasRole('ROLE_ADMIN')");
 
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/denied");
 
         http.authorizeRequests().and().formLogin()
                 .loginProcessingUrl("j_spring_security_check")
                 .loginPage("/login")
-                .defaultSuccessUrl("/account_info")
+                .defaultSuccessUrl("/internal")
                 .failureUrl("/login?err=true")
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/logout?success=true");
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/loggedOutSuccess");
     }
 }

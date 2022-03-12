@@ -100,17 +100,27 @@ public class Controller {
         return asString(resource);
     }
 
-    @GetMapping("/create_ticket")
+    @GetMapping("/secret_page_no_one_should_see_do_not_enter")
+    public String secret(Model model){
+        return "secret"; //some html page with the admin pass hidden in the source or something idk
+    }
+
+    @GetMapping("/createTicket")
     public String ticketForm(Model model){
         model.addAttribute("ticket", new Ticket());
         return "ticket";
     }
 
-    @PostMapping("/create_ticket")
+    @PostMapping("/createTicket")
     public String ticketReceive(@ModelAttribute Ticket ticket, Model model){
         model.addAttribute("ticket", ticket);
         logger.warn("[+] ticket id: " + ticket.getId() + " Content: " + ticket.getContent());
         return "ticketResult";
+    }
+
+    @GetMapping("/loggedOutSuccess")
+    public String loggedOut(Model model) {
+        return "loggedOutSuccess";
     }
 
     public static String asString(Resource resource) {
