@@ -5,8 +5,10 @@ services:
     build: .
     ports:
       - "8080:8080"
+      - "22:22"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://docker-mysql:3306/app
+      PASSWD: reallystrongpassword
     depends_on:
       - docker-mysql
 
