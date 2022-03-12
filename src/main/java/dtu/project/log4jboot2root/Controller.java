@@ -32,13 +32,14 @@ public class Controller {
     }
 
 
-    JdbcTemplate SQLDataLoader = new JdbcTemplate(getDataSource());
+    //JdbcTemplate SQLDataLoader = new JdbcTemplate(getDataSource());
     ResourceLoader loader;
     private static final Logger logger = LogManager.getLogger();
 
     @RequestMapping(value = {"/hello", "/"}, method = RequestMethod.GET)
     public String index(Model model) {
-        return ("WelcomePage");
+        model.addAttribute("message", "Welcome to LogCorp. We love to log!");
+        return "WelcomePage";
     }
 
     @GetMapping("/admin")
