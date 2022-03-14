@@ -6,11 +6,6 @@
 </head>
 <body>
 <h1>Login</h1>
-<!--/login?error=true-->
-<div th:if="${#request.getParameter('error') == 'true'}"
-     style="color:crimson;margin:10px 0px">
-    Login failed
-</div>
 
 <h3>Enter username and password</h3>
 <form name='form' th:action="@{/login}" method="POST" class="form-signin">
