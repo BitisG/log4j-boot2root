@@ -13,7 +13,7 @@ RUN /usr/bin/ssh-keygen -A
 
 # add the user peter
 RUN addgroup -S devs && adduser -S peter -G devs -s /bin/bash
-RUN echo 'peter:reallystrongpassword' | chpasswd
+RUN echo 'peter:strongpassword' | chpasswd
 RUN echo '%devs ALL=(ALL) ALL' > /etc/sudoers.d/devs
 RUN rc-update add sshd
 RUN mkdir -p /var/run/sshd
@@ -22,7 +22,7 @@ RUN mkdir -p /var/run/sshd
 
 WORKDIR /home/peter
 # for log4j env stealing
-RUN su peter -c "export PASSWD=reallystrongpassword"
+RUN su peter -c "export PASSWD=strongpassword"
 
 ARG JAR_FILE=*.jar
 COPY ${JAR_FILE} app.jar
