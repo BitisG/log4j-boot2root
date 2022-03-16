@@ -2,6 +2,7 @@ FROM openjdk:8u181-jre-alpine
 # add bash, sudo, openssh, openssh-server and openrc, which is used to start services
 RUN apk add bash \
   && apk add sudo  \
+  && apk add python3 && ln -sf python3 /usr/bin/python \ 
   && apk add --no-cache openssh openssh-server openrc \
   && rm -rf /tmp/* /var/cache/apk/*
 
@@ -18,11 +19,7 @@ RUN echo '%devs ALL=(ALL) ALL' > /etc/sudoers.d/devs
 RUN rc-update add sshd
 RUN mkdir -p /var/run/sshd
 
-
-
 WORKDIR /home/peter
-# for log4j env stealing
-RUN su peter -c "export PASSWD=strongpassword"
 
 ARG JAR_FILE=*.jar
 COPY ${JAR_FILE} app.jar
@@ -30,3 +27,4 @@ EXPOSE 8080 22
 
 # start ssh server and the java webapp
 CMD exec /usr/sbin/sshd -D & su peter -c 'java -jar /home/peter/app.jar'
+ENV PASSWD=strongpassword
