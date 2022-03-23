@@ -2,6 +2,7 @@ package dtu.project.log4jboot2root;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.ui.Model;
@@ -9,17 +10,24 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
+
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UncheckedIOException;
+import java.util.Map;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 
 @org.springframework.stereotype.Controller
 public class Controller {
+    private final TicketService ticketService;
+
+    public Controller(TicketService ticketService) {
+        this.ticketService = ticketService;
+    }
 
     public DataSource getDataSource() {
         DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
@@ -31,8 +39,25 @@ public class Controller {
         return dataSourceBuilder.build();
     }
 
+    @GetMapping("/tickets")
+    public String tickets(Map<String, Object> model) {
+        model.put("tickets", ticketService.getActiveTickets());
+        return "tickets";
+    }
 
-    //JdbcTemplate SQLDataLoader = new JdbcTemplate(getDataSource());
+    @PostMapping("addTicket")
+    public String addTicket(@RequestParam("description") String description) {
+        ticketService.addTicket("admin", description);
+        return "redirect:/tickets";
+    }
+
+    @GetMapping("/delete/{ticketID:.+}")
+    public String deleteTicket(@PathVariable("ticketID") String ticketID) {
+        ticketService.deleteTicket(ticketID);
+        return "redirect:/tickets";
+    }
+
+    JdbcTemplate SQLDataLoader = new JdbcTemplate(getDataSource());
     ResourceLoader loader;
     private static final Logger logger = LogManager.getLogger();
 
@@ -96,11 +121,12 @@ public class Controller {
         return "denied";
     }
 
-    public String robots(){
+    public String robots() {
         Resource resource = loader.getResource("classpath:static/robots.txt");
         return asString(resource);
     }
 
+<<<<<<< Updated upstream
     @GetMapping("/secret_page_no_one_should_see_do_not_enter")
     public String secret(Model model){
         return "secret"; //some html page with the admin pass hidden in the source or something idk
@@ -108,21 +134,33 @@ public class Controller {
 
     @GetMapping("/createTicket")
     public String ticketForm(Model model){
+=======
+    @GetMapping("/create_ticket")
+    public String ticketForm(Model model) {
+>>>>>>> Stashed changes
         model.addAttribute("ticket", new Ticket());
         return "ticket";
     }
 
+<<<<<<< Updated upstream
     @PostMapping("/createTicket")
     public String ticketReceive(@ModelAttribute Ticket ticket, Model model){
+=======
+    @PostMapping("/create_ticket")
+    public String ticketReceive(@ModelAttribute Ticket ticket, Model model) {
+>>>>>>> Stashed changes
         model.addAttribute("ticket", ticket);
-        logger.warn("[+] ticket id: " + ticket.getId() + " Content: " + ticket.getContent());
+        logger.warn("[+] ticket id: " + ticket.getTicketID() + " Content: " + ticket.getDescription());
         return "ticketResult";
     }
 
+<<<<<<< Updated upstream
     @GetMapping("/loggedOutSuccess")
     public String loggedOut(Model model) {
         return "loggedOutSuccess";
     }
+=======
+>>>>>>> Stashed changes
 
     public static String asString(Resource resource) {
         try (Reader reader = new InputStreamReader(resource.getInputStream(), UTF_8)) {

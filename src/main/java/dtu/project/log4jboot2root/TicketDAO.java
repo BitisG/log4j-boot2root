@@ -1,0 +1,92 @@
+package dtu.project.log4jboot2root;
+
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
+import java.sql.*;
+
+public class TicketDAO {
+
+    private String url = "jdbc:mysql://database:3306/app";
+
+
+    public DataSource getDataSource() {
+        DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
+        dataSourceBuilder.driverClassName("com.mysql.jdbc.Driver");
+        dataSourceBuilder.url("jdbc:mysql://database:3306/app");
+        dataSourceBuilder.username("peter");
+        dataSourceBuilder.password("strongpassword");
+        System.out.println("Building dataSource");
+        return dataSourceBuilder.build();
+    }
+
+    public Connection getConnection() {
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(url, "peter", "strongpassword");
+        } catch (Exception e) {
+            System.out.println("Exception caught while creating db connection:");
+            System.out.println(e.getMessage());
+        }
+        return conn;
+    }
+
+    JdbcTemplate SQLDataLoader = new JdbcTemplate(getDataSource());
+
+    public List<Ticket> getActiveTickets() {
+        List<Ticket> ticketList = new ArrayList<Ticket>();
+        String query = "SELECT TICKET_ID, CREATED_BY, DESCRIPTION FROM TICKETS GROUP BY TICKET_ID";
+        Connection conn = getConnection();
+
+        try {
+            Statement statement = conn.createStatement();
+            ResultSet resultSet;
+            resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                Ticket ticket = new Ticket();
+                ticket.setTicketID(resultSet.getString(1));
+                ticket.setCreatedBy(resultSet.getString(2));
+                ticket.setDescription(resultSet.getString(3));
+                ticketList.add(ticket);
+            }
+
+            statement.close();
+        } catch (Exception e) {
+            System.out.println("EXCEPTION CAUGHT:");
+            System.out.println(e.getMessage());
+        }
+        return ticketList;
+    }
+
+    public void addTicket(String ticketID, String creator, String description) {
+        String query = String.format("INSERT INTO TICKETS(TICKET_ID, CREATED_BY, DESCRIPTION)"
+                + "values('%1$s', '%2$s', '%3$s')", ticketID, creator, description);
+        Connection conn = getConnection();
+
+        try {
+            Statement statement = conn.createStatement();
+            statement.execute(query);
+            statement.closeOnCompletion();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void deleteTicket(String ticketID) {
+        String query = String.format("DELETE FROM TICKETS WHERE TICKET_ID = '%1$s'", ticketID);
+        Connection conn = getConnection();
+        try {
+            Statement statement = conn.createStatement();
+            statement.execute(query);
+            statement.closeOnCompletion();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+}
