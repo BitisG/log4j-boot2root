@@ -7,6 +7,15 @@ create table APP_USER
   ENCRYPTED_PASSWORD VARCHAR(128) not null,
   ENABLED            BIT not null  
 );
+
+create table TICKETS
+  (
+    TICKET_ID       VARCHAR(6) not null,
+    CREATED_BY      VARCHAR(25) not null,
+    DESCRIPTION     VARCHAR(1000)
+  );
+
+  insert into TICKETS(TICKET_ID,CREATED_BY,DESCRIPTION) values(1,'admin','This is a testing ticket!');
   
 alter table APP_USER
   add constraint APP_USER_PK primary key (USER_ID);

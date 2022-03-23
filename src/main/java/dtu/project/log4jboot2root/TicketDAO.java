@@ -9,8 +9,9 @@ import java.util.List;
 import java.sql.*;
 
 public class TicketDAO {
-
-    private String url = "jdbc:mysql://database:3306/app";
+    //Make sure the ip is correct by doing docker exec log4j-boot2root_docker-mysql_1 cat /etc/hosts
+    //To clear the database volume you can do docker-compose down -v
+    private String url = "jdbc:mysql://172.23.0.2:3306/app";
 
 
     public DataSource getDataSource() {
@@ -38,7 +39,7 @@ public class TicketDAO {
 
     public List<Ticket> getActiveTickets() {
         List<Ticket> ticketList = new ArrayList<Ticket>();
-        String query = "SELECT TICKET_ID, CREATED_BY, DESCRIPTION FROM TICKETS GROUP BY TICKET_ID";
+        String query = "SELECT TICKET_ID, CREATED_BY, DESCRIPTION FROM TICKETS GROUP BY TICKET_ID, CREATED_BY, DESCRIPTION";
         Connection conn = getConnection();
 
         try {

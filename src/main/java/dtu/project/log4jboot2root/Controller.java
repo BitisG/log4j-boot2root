@@ -51,9 +51,9 @@ public class Controller {
         return "redirect:/tickets";
     }
 
-    @GetMapping("/delete/{ticketID:.+}")
-    public String deleteTicket(@PathVariable("ticketID") String ticketID) {
-        ticketService.deleteTicket(ticketID);
+    @PostMapping("/deleteTicket")
+    public String deleteTicket(@RequestParam String id) {
+        ticketService.deleteTicket((id));
         return "redirect:/tickets";
     }
 
@@ -126,41 +126,28 @@ public class Controller {
         return asString(resource);
     }
 
-<<<<<<< Updated upstream
     @GetMapping("/secret_page_no_one_should_see_do_not_enter")
     public String secret(Model model){
         return "secret"; //some html page with the admin pass hidden in the source or something idk
     }
 
-    @GetMapping("/createTicket")
-    public String ticketForm(Model model){
-=======
     @GetMapping("/create_ticket")
     public String ticketForm(Model model) {
->>>>>>> Stashed changes
         model.addAttribute("ticket", new Ticket());
         return "ticket";
     }
 
-<<<<<<< Updated upstream
-    @PostMapping("/createTicket")
-    public String ticketReceive(@ModelAttribute Ticket ticket, Model model){
-=======
     @PostMapping("/create_ticket")
     public String ticketReceive(@ModelAttribute Ticket ticket, Model model) {
->>>>>>> Stashed changes
         model.addAttribute("ticket", ticket);
         logger.warn("[+] ticket id: " + ticket.getTicketID() + " Content: " + ticket.getDescription());
         return "ticketResult";
     }
 
-<<<<<<< Updated upstream
     @GetMapping("/loggedOutSuccess")
     public String loggedOut(Model model) {
         return "loggedOutSuccess";
     }
-=======
->>>>>>> Stashed changes
 
     public static String asString(Resource resource) {
         try (Reader reader = new InputStreamReader(resource.getInputStream(), UTF_8)) {
