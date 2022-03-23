@@ -48,6 +48,7 @@ public class Controller {
     @PostMapping("addTicket")
     public String addTicket(@RequestParam("description") String description) {
         ticketService.addTicket("admin", description);
+        logger.warn("[+] ticket id: " + ticket.getTicketID() + " Content: " + ticket.getDescription());
         return "redirect:/tickets";
     }
 
