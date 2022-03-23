@@ -15,7 +15,9 @@ RUN /usr/bin/ssh-keygen -A
 # add the user peter
 RUN addgroup -S devs && adduser -S peter -G devs -s /bin/bash
 RUN echo 'peter:strongpassword' | chpasswd
-RUN echo '%devs ALL=(ALL) ALL' > /etc/sudoers.d/devs
+COPY special_log_reader.py home/peter/special_log_reader.py
+
+RUN echo '%devs ALL=(ALL) NOPASSWD: /usr/bin/python3 /home/peter/special_log_reader.py' > /etc/sudoers.d/devs
 RUN rc-update add sshd
 RUN mkdir -p /var/run/sshd
 
