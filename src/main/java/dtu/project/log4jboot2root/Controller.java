@@ -2,7 +2,6 @@ package dtu.project.log4jboot2root;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.ui.Model;
@@ -10,16 +9,13 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
-
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UncheckedIOException;
 import java.util.Map;
-
 import static java.nio.charset.StandardCharsets.UTF_8;
-
 
 @org.springframework.stereotype.Controller
 public class Controller {
@@ -128,7 +124,7 @@ public class Controller {
     }
 
     @GetMapping("/secret_page_no_one_should_see_do_not_enter")
-    public String secret(Model model){
+    public String secret(){
         return "secret"; //some html page with the admin pass hidden in the source or something idk
     }
 
@@ -146,8 +142,13 @@ public class Controller {
     }
 
     @GetMapping("/loggedOutSuccess")
-    public String loggedOut(Model model) {
+    public String loggedOut() {
         return "loggedOutSuccess";
+    }
+
+    @GetMapping("/internal")
+    public String internal() {
+        return "internal";
     }
 
     public static String asString(Resource resource) {
