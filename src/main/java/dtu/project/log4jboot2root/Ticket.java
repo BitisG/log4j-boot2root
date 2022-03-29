@@ -1,22 +1,31 @@
 package dtu.project.log4jboot2root;
 
 public class Ticket {
-    private long id;
-    private String content;
+    private String ticketID;
+    private String createdBy;
+    private String description;
 
-    public long getId() {
-        return id;
+    public String getTicketID() {
+        return ticketID;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setTicketID(String ticketID) {
+        this.ticketID = ticketID;
     }
 
-    public String getContent() {
-        return content;
+    public String getCreatedBy() {
+        return createdBy;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

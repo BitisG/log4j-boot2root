@@ -14,12 +14,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UncheckedIOException;
-
+import java.util.Map;
 import static java.nio.charset.StandardCharsets.UTF_8;
-
 
 @org.springframework.stereotype.Controller
 public class Controller {
+    private final TicketService ticketService;
+
+    public Controller(TicketService ticketService) {
+        this.ticketService = ticketService;
+    }
 
     public DataSource getDataSource() {
         DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
@@ -31,8 +35,26 @@ public class Controller {
         return dataSourceBuilder.build();
     }
 
+    @GetMapping("/tickets")
+    public String tickets(Map<String, Object> model) {
+        model.put("tickets", ticketService.getActiveTickets());
+        return "tickets";
+    }
 
-    //JdbcTemplate SQLDataLoader = new JdbcTemplate(getDataSource());
+    @PostMapping("addTicket")
+    public String addTicket(@RequestParam("description") String description) {
+        ticketService.addTicket("admin", description);
+        logger.warn("[+] ticket created with content: " + description);
+        return "redirect:/tickets";
+    }
+
+    @PostMapping("/deleteTicket")
+    public String deleteTicket(@RequestParam String id) {
+        ticketService.deleteTicket((id));
+        return "redirect:/tickets";
+    }
+
+    JdbcTemplate SQLDataLoader = new JdbcTemplate(getDataSource());
     ResourceLoader loader;
     private static final Logger logger = LogManager.getLogger();
 
@@ -96,32 +118,37 @@ public class Controller {
         return "denied";
     }
 
-    public String robots(){
+    public String robots() {
         Resource resource = loader.getResource("classpath:static/robots.txt");
         return asString(resource);
     }
 
     @GetMapping("/secret_page_no_one_should_see_do_not_enter")
-    public String secret(Model model){
+    public String secret(){
         return "secret"; //some html page with the admin pass hidden in the source or something idk
     }
 
-    @GetMapping("/createTicket")
-    public String ticketForm(Model model){
+    @GetMapping("/create_ticket")
+    public String ticketForm(Model model) {
         model.addAttribute("ticket", new Ticket());
         return "ticket";
     }
 
-    @PostMapping("/createTicket")
-    public String ticketReceive(@ModelAttribute Ticket ticket, Model model){
+    @PostMapping("/create_ticket")
+    public String ticketReceive(@ModelAttribute Ticket ticket, Model model) {
         model.addAttribute("ticket", ticket);
-        logger.warn("[+] ticket id: " + ticket.getId() + " Content: " + ticket.getContent());
+        logger.warn("[+] ticket id: " + ticket.getTicketID() + " Content: " + ticket.getDescription());
         return "ticketResult";
     }
 
     @GetMapping("/loggedOutSuccess")
-    public String loggedOut(Model model) {
+    public String loggedOut() {
         return "loggedOutSuccess";
+    }
+
+    @GetMapping("/internal")
+    public String internal() {
+        return "internal";
     }
 
     public static String asString(Resource resource) {

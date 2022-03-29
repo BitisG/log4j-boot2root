@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <style>table, th, td {
+        border: 1px solid black;
+    }
+
+    th, td {
+        padding: 15px;
+    }
+    </style>
+    <meta charset="UTF-8"/>
+    <title>Ticket page</title>
+</head>
+<body>
+<h1>Active tickets</h1>
+<table>
+    <tr>
+        <th>Ticket ID</th>
+        <th>Created By</th>
+        <th>Description</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="ticket: ${tickets}">
+        <td th:text="${ticket.ticketID}"></td>
+        <td th:text="${ticket.createdBy}"></td>
+        <td th:text="${ticket.description}"></td>
+        <td>
+            <form action="#" th:action="@{/deleteTicket}" method="POST">
+                <input type="hidden" name="id" th:value="${ticket.ticketID}"/>
+                <p><input type="submit" value="Delete" />
+            </form>
+        </td>
+    </tr>
+</table>
+<form action="addTicket" method="POST">
+    <div style="max-height:70%; overflow-y:auto;">
+        <b>Description</b><br><br>
+        <textarea rows="6" cols="50" style="width: 35%;" name="description"></textarea>
+    </div>
+    <div class="modal-footer">
+        <input type="submit" value="Submit">
+    </div>
+</form>
+</body>
+</html>

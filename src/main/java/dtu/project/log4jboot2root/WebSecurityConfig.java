@@ -35,15 +35,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
         //Requires user or admin
         http.authorizeRequests().antMatchers("/internal").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
-
-        http.authorizeRequests().antMatchers("/createTicket","/admin").access("hasRole('ROLE_ADMIN')");
-
+        http.authorizeRequests().antMatchers("/create_ticket","/admin","/tickets").access("hasRole('ROLE_ADMIN')");
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/denied");
-
         http.authorizeRequests().and().formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/internal")
-                .failureUrl("/login?err=true")
+                .failureUrl("/login?error=true")
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/loggedOutSuccess");
