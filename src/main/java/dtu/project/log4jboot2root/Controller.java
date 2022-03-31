@@ -137,7 +137,7 @@ public class Controller {
         return asString(resource);
     }
 
-    @GetMapping("/secret_page_no_one_should_see_do_not_enter")
+    @GetMapping("/44a86b4e2c89f87be46c3ad9f24128dc")
     public String secret(){
         return "secret"; //some html page with the admin pass hidden in the source or something idk
     }

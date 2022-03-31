@@ -59,8 +59,8 @@ public class AppUserDAO {
 
             while (resultSet.next()) {
                 User user = new User();
-                user.setUsername(resultSet.getString(1));
-                user.setID(resultSet.getString(2));
+                user.setID(resultSet.getString(1));
+                user.setUsername(resultSet.getString(2));
                 userList.add(user);
             }
 
