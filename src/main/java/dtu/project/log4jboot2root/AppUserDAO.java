@@ -24,7 +24,7 @@ public class AppUserDAO {
     public List<User> findUsers(String username) {
         List<User> userList = new ArrayList<User>();
         String query = String.format("SELECT USER_ID, USER_NAME FROM APP_USER WHERE USER_NAME LIKE "
-                + "%s", username);
+                + "'%s'", username);
         Connection conn = getSqlConnection();
 
         try {
