@@ -10,6 +10,7 @@ import java.util.List;
 public class User implements UserDetails {
     private String username;
     private String password;
+    private String ID;
     private List<GrantedAuthority> auth;
 
     public User(){}
@@ -61,4 +62,11 @@ public class User implements UserDetails {
         this.password = password;
     }
 
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
 }

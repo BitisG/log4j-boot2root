@@ -5,18 +5,19 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 @Transactional
-public class AppUserDAO extends JdbcDaoSupport {
+public class AppUserDAO {
     //This class is used to manipulate the APP_USER table. Contains methods to for example find user based on name
 
-    @Autowired
-    public AppUserDAO(DataSource dataSource) {
-        this.setDataSource(dataSource);
-    }
-
-    public AppUser findUserAccount(String username) {
+    /*public AppUser findUserAccount(String username) {
         //Select .. from APP_USER u where u.USER_NAME = ?
         String sql = AppUserMapper.BASE_SQL + "where u.USER_NAME = ? ";
 
@@ -28,6 +29,47 @@ public class AppUserDAO extends JdbcDaoSupport {
             return null;
         }
 
+    } */
+
+    //This class is used to manipulate the APP_USER table. Contains methods to for example find user based on name
+
+    private String url = "jdbc:mysql://172.18.0.2:3306/app";
+
+    public Connection getConnection() {
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(url, "peter", "strongpassword");
+        } catch (Exception e) {
+            System.out.println("Exception caught while creating db connection:");
+            System.out.println(e.getMessage());
+        }
+        return conn;
+    }
+
+    public List<User> findUsers(String username) {
+        List<User> userList = new ArrayList<User>();
+        String query = String.format("SELECT USER_ID, USER_NAME FROM APP_USER WHERE USER_NAME LIKE "
+                + "%s", username);
+        Connection conn = getConnection();
+
+        try {
+            Statement statement = conn.createStatement();
+            ResultSet resultSet;
+            resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                User user = new User();
+                user.setUsername(resultSet.getString(1));
+                user.setID(resultSet.getString(2));
+                userList.add(user);
+            }
+
+            statement.close();
+        } catch (Exception e) {
+            System.out.println("EXCEPTION CAUGHT:");
+            System.out.println(e.getMessage());
+        }
+        return userList;
     }
 
 }

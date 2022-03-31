@@ -14,6 +14,7 @@ import java.util.List;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
+    /* I Honestly think we can delete this entire thing...
     @Autowired
     private AppUserDAO appUserDAO;
 
@@ -41,6 +42,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             }
         }
 
-        return (UserDetails) new User(appUser.getUsername(), appUser.getEncryptedPassword(), grants);
+        return new User(appUser.getUsername(), appUser.getEncryptedPassword(), grants);
+    }
+    */
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return null;
     }
 }
