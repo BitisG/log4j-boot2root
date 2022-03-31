@@ -14,10 +14,11 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class AppUserDAO {
+public class AppUserDAO extends JdbcDaoSupport{
     //This class is used to manipulate the APP_USER table. Contains methods to for example find user based on name
 
-    /*public AppUser findUserAccount(String username) {
+    //Used by Spring Security
+    public AppUser findUserAccount(String username) {
         //Select .. from APP_USER u where u.USER_NAME = ?
         String sql = AppUserMapper.BASE_SQL + "where u.USER_NAME = ? ";
 
@@ -29,13 +30,13 @@ public class AppUserDAO {
             return null;
         }
 
-    } */
+    }
 
     //This class is used to manipulate the APP_USER table. Contains methods to for example find user based on name
 
     private String url = "jdbc:mysql://172.18.0.2:3306/app";
 
-    public Connection getConnection() {
+    public Connection getSqlConnection() {
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url, "peter", "strongpassword");
@@ -50,7 +51,7 @@ public class AppUserDAO {
         List<User> userList = new ArrayList<User>();
         String query = String.format("SELECT USER_ID, USER_NAME FROM APP_USER WHERE USER_NAME LIKE "
                 + "%s", username);
-        Connection conn = getConnection();
+        Connection conn = getSqlConnection();
 
         try {
             Statement statement = conn.createStatement();
