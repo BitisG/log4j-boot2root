@@ -11,18 +11,7 @@ import java.sql.*;
 public class TicketDAO {
     //Make sure the ip is correct by doing docker exec log4j-boot2root_docker-mysql_1 cat /etc/hosts
     //To clear the database volume you can do docker-compose down -v
-    private String url = "jdbc:mysql://172.23.0.2:3306/app";
-
-
-    public DataSource getDataSource() {
-        DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
-        dataSourceBuilder.driverClassName("com.mysql.jdbc.Driver");
-        dataSourceBuilder.url("jdbc:mysql://database:3306/app");
-        dataSourceBuilder.username("peter");
-        dataSourceBuilder.password("strongpassword");
-        System.out.println("Building dataSource");
-        return dataSourceBuilder.build();
-    }
+    private String url = "jdbc:mysql://172.18.0.2:3306/app";
 
     public Connection getConnection() {
         Connection conn = null;
@@ -34,8 +23,6 @@ public class TicketDAO {
         }
         return conn;
     }
-
-    JdbcTemplate SQLDataLoader = new JdbcTemplate(getDataSource());
 
     public List<Ticket> getActiveTickets() {
         List<Ticket> ticketList = new ArrayList<Ticket>();

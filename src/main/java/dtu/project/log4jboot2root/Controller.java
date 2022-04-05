@@ -20,9 +20,11 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 @org.springframework.stereotype.Controller
 public class Controller {
     private final TicketService ticketService;
+    private final AppUserService appUserService;
 
-    public Controller(TicketService ticketService) {
+    public Controller(TicketService ticketService, AppUserService appUserService) {
         this.ticketService = ticketService;
+        this.appUserService = appUserService;
     }
 
     public DataSource getDataSource() {
@@ -41,7 +43,19 @@ public class Controller {
         return "tickets";
     }
 
-    @PostMapping("addTicket")
+    @GetMapping("/supporters")
+    public String supporters(Map<String, Object> model) {
+        model.put("users", appUserService.getUser("peter"));
+        return "supporters";
+    }
+
+    @PostMapping("/searchUsers")
+    public String searchUsers(@RequestParam("name") String name, Map<String, Object> model) {
+        model.put("users", appUserService.getUser(name));
+        return "supporters";
+    }
+
+    @PostMapping("/addTicket")
     public String addTicket(@RequestParam("description") String description) {
         ticketService.addTicket("admin", description);
         logger.warn("[+] ticket created with content: " + description);
@@ -123,7 +137,7 @@ public class Controller {
         return asString(resource);
     }
 
-    @GetMapping("/secret_page_no_one_should_see_do_not_enter")
+    @GetMapping("/44a86b4e2c89f87be46c3ad9f24128dc")
     public String secret(){
         return "secret"; //some html page with the admin pass hidden in the source or something idk
     }
