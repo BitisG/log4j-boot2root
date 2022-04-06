@@ -36,8 +36,7 @@ public class Controller {
     }
 
     @GetMapping("/supporters")
-    public String supporters(Map<String, Object> model) {
-        model.put("users", appUserService.getUser("peter"));
+    public String supporters() {
         return "supporters";
     }
 
@@ -63,7 +62,7 @@ public class Controller {
     ResourceLoader loader;
     private static final Logger logger = LogManager.getLogger();
 
-    @RequestMapping(value = {"/hello", "/"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public String index(Model model) {
         model.addAttribute("message", "Welcome to LogCorp. We love to log!");
         return "WelcomePage";
