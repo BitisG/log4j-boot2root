@@ -9,12 +9,14 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
+
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UncheckedIOException;
 import java.util.Map;
+
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 @org.springframework.stereotype.Controller
@@ -25,16 +27,6 @@ public class Controller {
     public Controller(TicketService ticketService, AppUserService appUserService) {
         this.ticketService = ticketService;
         this.appUserService = appUserService;
-    }
-
-    public DataSource getDataSource() {
-        DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
-        dataSourceBuilder.driverClassName("com.mysql.jdbc.Driver");
-        dataSourceBuilder.url("jdbc:mysql://database:3306/app");
-        dataSourceBuilder.username("peter");
-        dataSourceBuilder.password("strongpassword");
-        System.out.println("Building dataSource");
-        return dataSourceBuilder.build();
     }
 
     @GetMapping("/tickets")
@@ -68,7 +60,6 @@ public class Controller {
         return "redirect:/tickets";
     }
 
-    JdbcTemplate SQLDataLoader = new JdbcTemplate(getDataSource());
     ResourceLoader loader;
     private static final Logger logger = LogManager.getLogger();
 
@@ -96,39 +87,9 @@ public class Controller {
         return "logout";
     }
 
-    /* @PostMapping("/login")
-    public RedirectView loggingIn(@ModelAttribute User user, Model model) {
-        model.addAttribute("user", user);
-
-        String sql = "SELECT USER_ID, ENCRYPTED_PASSWORD FROM APP_USER WHERE USER_NAME = \"" + user.getUsername() + "\"";
-
-        List<User> r = SQLDataLoader.query(sql, new RowMapper<User>() {
-            @Override
-            public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-                User user = new User();
-                user.setUsername(rs.getString(1));
-                user.setPassword(rs.getString(2));
-                return user;
-            }
-        });
-
-        if (r.isEmpty())
-            return new RedirectView("/hello");
-        else {
-            if (Base64.getEncoder().encodeToString(user.getPassword().getBytes()).equals(r.get(0).getPassword()))
-                return new RedirectView("/16144cf950518a312e26b9827d91449d166ed6e38e7cc569a9f3c559");
-            else
-                return new RedirectView("/hello");
-        }
-    } */
-
     @GetMapping("/denied")
-    public String denied(Model model, User user) {
-        if (user.getUsername() != null) {
-            model.addAttribute("message", "Hi " + user.getUsername() + "you do not have access to this page");
-        } else {
-            model.addAttribute("message", "You do not have access to this page!");
-        }
+    public String denied(Model model) {
+        model.addAttribute("message", "You do not have access to this page!");
         return "denied";
     }
 
@@ -138,21 +99,8 @@ public class Controller {
     }
 
     @GetMapping("/44a86b4e2c89f87be46c3ad9f24128dc")
-    public String secret(){
-        return "secret"; //some html page with the admin pass hidden in the source or something idk
-    }
-
-    @GetMapping("/create_ticket")
-    public String ticketForm(Model model) {
-        model.addAttribute("ticket", new Ticket());
-        return "ticket";
-    }
-
-    @PostMapping("/create_ticket")
-    public String ticketReceive(@ModelAttribute Ticket ticket, Model model) {
-        model.addAttribute("ticket", ticket);
-        logger.warn("[+] ticket id: " + ticket.getTicketID() + " Content: " + ticket.getDescription());
-        return "ticketResult";
+    public String secret() {
+        return "secret";
     }
 
     @GetMapping("/loggedOutSuccess")
