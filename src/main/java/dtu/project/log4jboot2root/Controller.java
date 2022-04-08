@@ -68,11 +68,7 @@ public class Controller {
         return "WelcomePage";
     }
 
-    @GetMapping("/admin")
-    public String adminPage(Model model) {
-        model.addAttribute("title", "admin page");
-        return "adminPage";
-    }
+
 
     @GetMapping("/login")
     public String loginPage(Model model) {
