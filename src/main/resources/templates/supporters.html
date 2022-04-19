@@ -18,10 +18,12 @@
     <tr>
         <th>User ID</th>
         <th>Name</th>
+        <th>Email</th>
     </tr>
     <tr th:each="user: ${users}">
         <td th:text="${user.getID}"></td>
         <td th:text="${user.getUsername}"></td>
+        <td th:text="${user.getEmail}"></td>
     </tr>
 </table>
 <form action="searchUsers" method="POST">
