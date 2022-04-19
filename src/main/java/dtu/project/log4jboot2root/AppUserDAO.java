@@ -21,8 +21,8 @@ public class AppUserDAO {
         return conn;
     }
 
-    public List<User> findUsers(String username) {
-        List<User> userList = new ArrayList<User>();
+    public List<AppUser> findUsers(String username) {
+        List<AppUser> userList = new ArrayList<AppUser>();
         String query = String.format("SELECT USER_ID, USER_NAME FROM APP_USER WHERE USER_NAME LIKE "
                 + "'%s'", username);
         Connection conn = getSqlConnection();
@@ -33,10 +33,10 @@ public class AppUserDAO {
             resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
-                User user = new User();
-                user.setID(resultSet.getString(1));
-                user.setUsername(resultSet.getString(2));
-                userList.add(user);
+                AppUser appUser = new AppUser();
+                appUser.setUserID(Long.valueOf(resultSet.getString(1)));
+                appUser.setUsername(resultSet.getString(2));
+                userList.add(appUser);
             }
 
             statement.close();

@@ -40,6 +40,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             }
         }
 
-        return new User(appUser.getUsername(), appUser.getEncryptedPassword(), grants);
+        return (UserDetails) new AppUser(appUser.getUsername(), appUser.getPassword(), grants);
     }
 }

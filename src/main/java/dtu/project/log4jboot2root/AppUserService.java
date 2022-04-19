@@ -9,7 +9,7 @@ public class AppUserService {
 
     private AppUserDAO appUserDAO = new AppUserDAO();
 
-    public List<User> getUser(String username) {
+    public List<AppUser> getUser(String username) {
         return appUserDAO.findUsers(username);
     }
 

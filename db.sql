@@ -16,6 +16,9 @@ create table TICKETS
     DESCRIPTION     VARCHAR(1000)
   );
 
+alter table TICKETS
+  add constraint TICKET_PK primary key (TICKET_ID);
+
   insert into TICKETS(TICKET_ID,CREATED_BY,DESCRIPTION) values(1,'admin','This is a testing ticket!');
   
 alter table APP_USER

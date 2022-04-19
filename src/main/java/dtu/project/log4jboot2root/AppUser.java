@@ -1,14 +1,28 @@
 package dtu.project.log4jboot2root;
 
+import org.springframework.security.core.GrantedAuthority;
+
+import java.util.List;
+
 public class AppUser { //Represents a record in the APP_USER table in DB
     private Long userID;
     private String username;
-    private String encryptedPassword;
+    private String password;
 
-    public AppUser(Long userID, String username, String encryptedPassword) {
+    private List<GrantedAuthority> authorityList;
+
+    public AppUser(){}
+
+    public AppUser(Long userID, String username, String password) {
         this.userID = userID;
         this.username = username;
-        this.encryptedPassword = encryptedPassword;
+        this.password = password;
+    }
+
+    public AppUser(String username, String password, List<GrantedAuthority> authorityList){
+        this.username = username;
+        this.password = password;
+        this.authorityList = authorityList;
     }
 
     public Long getUserID() {
@@ -19,8 +33,8 @@ public class AppUser { //Represents a record in the APP_USER table in DB
         return username;
     }
 
-    public String getEncryptedPassword() {
-        return encryptedPassword;
+    public String getPassword() {
+        return password;
     }
 
     public void setUserID(Long userID) {
@@ -31,8 +45,8 @@ public class AppUser { //Represents a record in the APP_USER table in DB
         this.username = username;
     }
 
-    public void setEncryptedPassword(String encryptedPassword) {
-        this.encryptedPassword = encryptedPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }

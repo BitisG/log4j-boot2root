@@ -4,6 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -23,6 +26,9 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public class Controller {
     private final TicketService ticketService;
     private final AppUserService appUserService;
+
+    //is used to get userdetails of currently logged in user
+    private Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
     public Controller(TicketService ticketService, AppUserService appUserService) {
         this.ticketService = ticketService;
@@ -48,7 +54,11 @@ public class Controller {
 
     @PostMapping("/addTicket")
     public String addTicket(@RequestParam("description") String description) {
-        ticketService.addTicket("admin", description);
+        String currentUserName = "anon";
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            currentUserName = authentication.getName();
+        }
+        ticketService.addTicket(currentUserName, description);
         logger.warn("[+] ticket created with content: " + description);
         return "redirect:/tickets";
     }
@@ -76,7 +86,7 @@ public class Controller {
         return "login";
     }
 
-    @GetMapping
+    @GetMapping("/logout")
     public String logout(Model model) {
         model.addAttribute("title", "logout");
         return "logout";
