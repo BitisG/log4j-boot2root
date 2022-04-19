@@ -4,6 +4,7 @@ create table APP_USER
 (
   USER_ID            BIGINT not null,
   USER_NAME          VARCHAR(36) not null,
+  EMAIL              VARCHAR(50) not null,
   PASSWORD           VARCHAR(128) not null,
   ENABLED            BIT not null  
 );
@@ -71,11 +72,11 @@ CREATE TABLE Persistent_Logins (
 );
 
 
-insert into APP_USER(USER_ID, USER_NAME, ENCRYPTED_PASSWORD, ENABLED)
-values (2, 'peter', '$2a$10$WF0yYWhl4kZDEWbvC3CoMeUFOB2AK/Yr0oMSO9UA3hYEb86vGRSFy', 1);
+insert into APP_USER(USER_ID, USER_NAME, EMAIL, PASSWORD, ENABLED)
+values (2, 'peter', 'peter@logcorp.tech','$2a$10$WF0yYWhl4kZDEWbvC3CoMeUFOB2AK/Yr0oMSO9UA3hYEb86vGRSFy', 1);
 
-insert into APP_USER(USER_ID, USER_NAME, ENCRYPTED_PASSWORD, ENABLED)
-values (1, 'admin', '$2a$10$RuJnBxAZMIK61Mr2Capsnu1SdeJIkM7s360lpCMS5HQY3ckQ1t8EO', 1);
+insert into APP_USER(USER_ID, USER_NAME, EMAIL, PASSWORD, ENABLED)
+values (1, 'admin', 'admin@support.logcorp.tech','$2a$10$RuJnBxAZMIK61Mr2Capsnu1SdeJIkM7s360lpCMS5HQY3ckQ1t8EO', 1);
 
 
 insert into APP_ROLE (ROLE_ID, ROLE_NAME)
