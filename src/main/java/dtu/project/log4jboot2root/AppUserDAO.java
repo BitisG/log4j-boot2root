@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AppUserDAO {
-    private String url = "jdbc:mysql://172.18.0.2:3306/app";
+    private String url = "jdbc:mysql://172.19.0.2:3306/app";
 
     public Connection getSqlConnection() {
         Connection conn = null;
@@ -36,6 +36,7 @@ public class AppUserDAO {
                 AppUser appUser = new AppUser();
                 appUser.setUserID(Long.valueOf(resultSet.getString(1)));
                 appUser.setUsername(resultSet.getString(2));
+                appUser.setEmail(resultSet.getString(3));
                 userList.add(appUser);
             }
 
