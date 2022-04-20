@@ -1,11 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
 <head>
     <meta charset="UTF-8">
     <title>Internal</title>
+    <style>
+    button.logoutLblPos {
+    position:fixed;
+    right:10px;
+    top:5px;
+    }
+    div.logoutPos {
+        position: fixed;
+        right: 200px;
+        top: 5px;
+    }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<div class="logoutPos" sec:authorize="isAuthenticated()">
+    Authenticated as <span sec:authentication="name"></span></div>
+<br>
+<br>
 Hey guys, I heard something about the logging framework we use being insecure. Maybe we should look into that at our next meeting?
 In any case, I don't think any outside factors can utilize the vulnerability as far as I know, so we should be safe for now.
+
+<form align="right" name="logout" method="post" action="/logout">
+    <button type="submit" class="btn btn-default btn-sm logoutLblPos">
+        <span class="glyphicon glyphicon-log-out"></span> Log out
+    </button>
+</form>
 </body>
 </html>

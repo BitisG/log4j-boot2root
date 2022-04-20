@@ -1,14 +1,30 @@
 package dtu.project.log4jboot2root;
 
+import org.springframework.security.core.GrantedAuthority;
+
+import java.util.List;
+
 public class AppUser { //Represents a record in the APP_USER table in DB
     private Long userID;
     private String username;
-    private String encryptedPassword;
+    private String password;
+    private String email;
 
-    public AppUser(Long userID, String username, String encryptedPassword) {
+    private List<GrantedAuthority> authorityList;
+
+    public AppUser(){}
+
+    public AppUser(Long userID, String username, String email,String password) {
         this.userID = userID;
         this.username = username;
-        this.encryptedPassword = encryptedPassword;
+        this.email = email;
+        this.password = password;
+    }
+    public AppUser(String username, String password, List<GrantedAuthority> authorityList){
+        //used in UserDetailsServiceImpl
+        this.username = username;
+        this.password = password;
+        this.authorityList = authorityList;
     }
 
     public Long getUserID() {
@@ -19,8 +35,8 @@ public class AppUser { //Represents a record in the APP_USER table in DB
         return username;
     }
 
-    public String getEncryptedPassword() {
-        return encryptedPassword;
+    public String getPassword() {
+        return password;
     }
 
     public void setUserID(Long userID) {
@@ -31,8 +47,36 @@ public class AppUser { //Represents a record in the APP_USER table in DB
         this.username = username;
     }
 
-    public void setEncryptedPassword(String encryptedPassword) {
-        this.encryptedPassword = encryptedPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+
+    /*
+    In an actual application, these would have to actually do something of course, however for this project where accounts
+    don't need to have the ability to be locked, expired and so on, they just return true by default. 
+     */
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    public boolean isAccountEnabled() {
+        return true;
+    }
 }

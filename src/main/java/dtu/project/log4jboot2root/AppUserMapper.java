@@ -7,15 +7,16 @@ import java.sql.SQLException;
 public class AppUserMapper implements RowMapper<AppUser> {
     //Maps the columns in the APP_USER table based on
     //the fields in the AppUser class
-    public static final String BASE_SQL = "Select u.USER_ID, u.USER_NAME, u.ENCRYPTED_PASSWORD From APP_USER u ";
+    public static final String BASE_SQL = "Select u.USER_ID, u.USER_NAME, u.EMAIL, u.PASSWORD From APP_USER u ";
 
     @Override
     public AppUser mapRow(ResultSet rs, int nowRum) throws SQLException {
         Long userID = rs.getLong("USER_ID");
         String username = rs.getString("USER_NAME");
-        String encrypted = rs.getString("ENCRYPTED_PASSWORD");
+        String email = rs.getString("EMAIL");
+        String password = rs.getString("PASSWORD");
 
-        return new AppUser(userID, username, encrypted);
+        return new AppUser(userID, username, email, password);
     }
 
 }

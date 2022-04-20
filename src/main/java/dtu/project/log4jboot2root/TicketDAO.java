@@ -11,7 +11,7 @@ import java.sql.*;
 public class TicketDAO {
     //Make sure the ip is correct by doing docker exec log4j-boot2root_docker-mysql_1 cat /etc/hosts
     //To clear the database volume you can do docker-compose down -v
-    private String url = "jdbc:mysql://172.18.0.2:3306/app";
+    private String url = "jdbc:mysql://172.19.0.2:3306/app";
 
     public Connection getConnection() {
         Connection conn = null;

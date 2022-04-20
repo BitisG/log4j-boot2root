@@ -29,9 +29,10 @@
                             <th>Name</th>
                             <th>Email</th>
                         </tr>
-                        <tr th:each="user: ${users}">
-                            <td th:text="${user.getID}"></td>
-                            <td th:text="${user.getUsername}"></td>
+                        <tr th:each="appUser: ${users}">
+                            <td th:text="${appUser.getUserID}"></td>
+                            <td th:text="${appUser.getUsername}"></td>
+                            <td th:text="${appUser.getEmail}"></td>
                         </tr>
                     </table>
                 </div>
@@ -62,10 +63,12 @@
     <tr>
         <th>User ID</th>
         <th>Name</th>
+        <th>Email</th>
     </tr>
-    <tr th:each="user: ${users}">
-        <td th:text="${user.getID}"></td>
-        <td th:text="${user.getUsername}"></td>
+    <tr th:each="appUser: ${users}">
+        <td th:text="${appUser.getUserID}"></td>
+        <td th:text="${appUser.getUsername}"></td>
+        <td th:text="${appUser.getEmail}"></td>
     </tr>
 </table>
 <form action="searchUsers" method="POST">
@@ -78,6 +81,7 @@
     </div>
     For debugging purposes, the query executed by the database from this page is:
      SELECT USER_ID, USER_NAME FROM APP_USER WHERE USER_NAME LIKE 'INPUT HERE';
+
 </form>
 </body>
 -->
