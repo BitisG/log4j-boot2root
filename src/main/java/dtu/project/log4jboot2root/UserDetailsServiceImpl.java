@@ -31,7 +31,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
 
         List<String> roles = this.appRoleDAO.getRoleName(appUser.getUserID());
-
         List<GrantedAuthority> grants = new ArrayList<GrantedAuthority>();
         if (roles != null) {
             for (String role: roles) {
@@ -39,7 +38,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 grants.add(authority);
             }
         }
+        CustomUserDetail customUserDetail = new CustomUserDetail();
+        customUserDetail.setUser(appUser);
+        customUserDetail.setAuthorities(grants);
 
-        return (UserDetails) new AppUser(appUser.getUsername(), appUser.getPassword(), grants);
+        //return (UserDetails) new AppUser(appUser.getUsername(), appUser.getPassword(), grants);
+        return customUserDetail;
     }
 }
