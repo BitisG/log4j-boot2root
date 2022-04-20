@@ -11,7 +11,51 @@
     </style>
     <meta charset="UTF-8"/>
     <title>Support Engineers</title>
+    <link href="assets/styles.css" rel="stylesheet" type="text/css"/>
 </head>
+<body>
+<div class="container-fluid">
+    <div class="row vh-100">
+        <div class="col-3" style="background-color: #0a53be"></div>
+        <div class="col-6">
+            <div class="row" style="justify-content: center">
+                <h1>Search for supporters below</h1>
+            </div>
+            <div class="row justify-content-md-center">
+                <div class="row">
+                    <table class="table-bordered">
+                        <tr>
+                            <th>User ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr>
+                        <tr th:each="user: ${users}">
+                            <td th:text="${user.getID}"></td>
+                            <td th:text="${user.getUsername}"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row">
+                    <form action="searchUsers" method="POST">
+                        <div style="overflow-y:auto">
+                            <b>Name (use % as a wildcard)</b><br></br>
+                            <textarea rows="6" style="min-width: 100%" name="description"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-3" style="background-color: #0a53be"></div>
+    </div>
+
+</div>
+<!--For debugging purposes, the query executed by the database from this page is:
+ SELECT USER_ID, USER_NAME FROM APP_USER WHERE USER_NAME LIKE 'INPUT HERE'; -->
+</body>
+<!--
 <body>
 <h1>Search for supporters below</h1>
 <table>
@@ -32,8 +76,9 @@
     <div class="modal-footer">
         <input type="submit" value="Submit">
     </div>
-    <!--For debugging purposes, the query executed by the database from this page is:
-     SELECT USER_ID, USER_NAME FROM APP_USER WHERE USER_NAME LIKE 'INPUT HERE'; -->
+    For debugging purposes, the query executed by the database from this page is:
+     SELECT USER_ID, USER_NAME FROM APP_USER WHERE USER_NAME LIKE 'INPUT HERE';
 </form>
 </body>
+-->
 </html>

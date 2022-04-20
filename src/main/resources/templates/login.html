@@ -3,14 +3,51 @@
 <head>
     <title>Login handler</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="assets/styles.css" rel="stylesheet" type="text/css"/>
 </head>
+
+<!-- https://mdbootstrap.com/docs/standard/extended/login/ nr. 7 -->
+
+<body>
+<section class="vh-100" style="background-color: #0a53be;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+
+                        <h3 class="mb-5">Sign in</h3>
+
+                        <div th:if="${#request.getParameter('error') == 'true'}"
+                             style="color:crimson;margin:10px 0px">
+                            Login failed
+                        </div>
+
+                        <form name='form' th:action="@{/login}" method="POST" class="form-signin">
+                            <div class="form-outline mb-4">
+                                <input type="text" class="form-control form-control-lg" placeholder="Username"/>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input type="password" class="form-control form-control-lg" placeholder="Password"/>
+                            </div>
+                            <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+</body>
+
+
+<!--
 <body>
 <h1>Login</h1>
-<!--/login?error=true-->
-<div th:if="${#request.getParameter('error') == 'true'}"
-     style="color:crimson;margin:10px 0px">
-    Login failed
-</div>
+/login?error=true
+
 
 <h3>Enter username and password</h3>
 <form name='form' th:action="@{/login}" method="POST" class="form-signin">
@@ -29,4 +66,5 @@
     </table>
 </form>
 </body>
+-->
 </html>
