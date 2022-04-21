@@ -28,7 +28,7 @@ public class Controller {
     private final AppUserService appUserService;
 
     //is used to get userdetails of currently logged in user
-    private Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    //private Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
     public Controller(TicketService ticketService, AppUserService appUserService) {
         this.ticketService = ticketService;
@@ -55,8 +55,17 @@ public class Controller {
     @PostMapping("/addTicket")
     public String addTicket(@RequestParam("description") String description) {
         String currentUserName = "anon";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+
+        if (authentication == null) {
+            System.out.println("bithc");
+        }
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            currentUserName = authentication.getName();
+            System.out.println("HER!");
+            CustomUserDetail user = (CustomUserDetail) authentication.getPrincipal();
+            System.out.println("AYO");
+            currentUserName = user.getUsername();
         }
         ticketService.addTicket(currentUserName, description);
         logger.warn("[+] ticket created with content: " + description);

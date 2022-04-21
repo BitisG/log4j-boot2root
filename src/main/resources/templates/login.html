@@ -25,12 +25,12 @@
 
                         <form name='form' th:action="@{/login}" method="POST" class="form-signin">
                             <div class="form-outline mb-4">
-                                <input type="text" class="form-control form-control-lg" placeholder="Username"/>
+                                <input type="text" class="form-control form-control-lg" placeholder="Username" name="username" />
                             </div>
                             <div class="form-outline mb-4">
-                                <input type="password" class="form-control form-control-lg" placeholder="Password"/>
+                                <input type="password" class="form-control form-control-lg" placeholder="Password" name="password" />
                             </div>
-                            <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+                            <button class="btn btn-primary btn-lg btn-block" name="submit" type="submit">Login</button>
                         </form>
                     </div>
                 </div>
