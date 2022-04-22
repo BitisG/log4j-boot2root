@@ -62,7 +62,7 @@ public class AppUser { //Represents a record in the APP_USER table in DB
 
     /*
     In an actual application, these would have to actually do something of course, however for this project where accounts
-    don't need to have the ability to be locked, expired and so on, they just return true by default. 
+    don't need to have the ability to be locked, expired and so on, they just return true by default.
      */
     public boolean isAccountNonExpired() {
         return true;

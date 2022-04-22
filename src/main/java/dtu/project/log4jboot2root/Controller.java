@@ -74,7 +74,6 @@ public class Controller {
 
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public String index(Model model) {
-        model.addAttribute("message", "Welcome to LogCorp. We love to log!");
         return "WelcomePage";
     }
 
