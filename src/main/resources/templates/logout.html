@@ -3,12 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Logout</title>
+    <link href="assets/styles.css" rel="stylesheet" type="text/css"/>
 </head>
+
 <body>
-<!--/login?success=true-->
+<section class="vh-100" style="background-color: #508bfc;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+                        <div th:if="${#request.getParameter('success') == 'true'}"
+                             style="color:deepskyblue;margin:10px 0px">
+                            Logout successful
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+
+
+<!--
+<body>
 <div th:if="${#request.getParameter('success') == 'true'}"
      style="color:deepskyblue;margin:10px 0px">
     Logout successful
 </div>
 </body>
+-->
 </html>
