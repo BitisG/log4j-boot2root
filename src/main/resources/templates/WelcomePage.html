@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -25,7 +26,8 @@
             <div class="float-end">
                 <a class="btn btn-secondary" href="/tickets">Tickets</a>
                 <a class="btn btn-secondary" href="/supporters">Supporters</a>
-                <a class="btn btn-primary" href="/login">Log In</a>
+                <a sec:authorize="isAuthenticated()" class="btn btn-secondary" href="/logout">Log Out</a>
+                <a sec:authorize="isAnonymous()" class="btn btn-primary" href="/login">Log In</a>
             </div>
         </div>
     </div>
