@@ -7,9 +7,9 @@ import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class TicketService {
-    private int ticketINT = 2;
-
     private TicketDAO ticketDAO = new TicketDAO();
+
+    private int ticketINT = ticketDAO.getLatestID();
 
     public List getActiveTickets() {
         return ticketDAO.getActiveTickets();
