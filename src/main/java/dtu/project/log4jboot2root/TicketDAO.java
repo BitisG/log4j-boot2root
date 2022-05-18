@@ -87,11 +87,6 @@ public class TicketDAO {
 
             ID =  Integer.getInteger(resultSet.getString(1));
 
-            while (resultSet.next()) {
-                Ticket ticket = new Ticket();
-                ticket.setTicketID(resultSet.getString(1));
-            }
-
             statement.close();
         } catch (Exception e) {
             System.out.println("EXCEPTION CAUGHT:");
