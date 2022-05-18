@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class    AppUserService {
+public class AppUserService {
 
     private AppUserDAO appUserDAO = new AppUserDAO();
 
