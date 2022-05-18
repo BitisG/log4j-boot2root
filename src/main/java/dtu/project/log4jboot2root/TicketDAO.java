@@ -11,7 +11,7 @@ import java.sql.*;
 public class TicketDAO {
     //Make sure the ip is correct by doing docker exec log4j-boot2root_docker-mysql_1 cat /etc/hosts
     //To clear the database volume you can do docker-compose down -v
-    private String url = "jdbc:mysql://172.19.0.2:3306/app";
+    private String url = "jdbc:mysql://172.21.0.2:3306/app";
 
     public Connection getConnection() {
         Connection conn = null;
@@ -50,9 +50,9 @@ public class TicketDAO {
         return ticketList;
     }
 
-    public void addTicket(String ticketID, String creator, String description) {
-        String query = String.format("INSERT INTO TICKETS(TICKET_ID, CREATED_BY, DESCRIPTION)"
-                + "values('%1$s', '%2$s', '%3$s')", ticketID, creator, description);
+    public void addTicket(String creator, String description) {
+        String query = String.format("INSERT INTO TICKETS( CREATED_BY, DESCRIPTION)"
+                + "values('%1$s' ,'%2$s')", creator, description);
         Connection conn = getConnection();
 
         try {
@@ -75,25 +75,4 @@ public class TicketDAO {
             System.out.println(e.getMessage());
         }
     }
-
-    public int getLatestID() {
-        String query = "SELECT MAX(TICKET_ID) FROM TICKETS";
-        Connection conn = getConnection();
-        int ID = 1;
-        try {
-            Statement statement = conn.createStatement();
-            ResultSet resultSet;
-            resultSet = statement.executeQuery(query);
-
-            ID =  Integer.getInteger(resultSet.getString(1));
-
-            statement.close();
-        } catch (Exception e) {
-            System.out.println("EXCEPTION CAUGHT:");
-            System.out.println(e.getMessage());
-        }
-        return ID;
-    }
-
-
 }
