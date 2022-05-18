@@ -76,5 +76,24 @@ public class TicketDAO {
         }
     }
 
+    public int getLatestID() {
+        String query = "SELECT MAX(TICKET_ID) FROM TICKETS";
+        Connection conn = getConnection();
+        int ID = 1;
+        try {
+            Statement statement = conn.createStatement();
+            ResultSet resultSet;
+            resultSet = statement.executeQuery(query);
+
+            ID =  Integer.getInteger(resultSet.getString(1));
+
+            statement.close();
+        } catch (Exception e) {
+            System.out.println("EXCEPTION CAUGHT:");
+            System.out.println(e.getMessage());
+        }
+        return ID;
+    }
+
 
 }
