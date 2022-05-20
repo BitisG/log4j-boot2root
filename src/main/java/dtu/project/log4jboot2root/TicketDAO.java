@@ -10,7 +10,6 @@ public class TicketDAO {
     //To clear the database volume you can do docker-compose down -v
     Connector connector = new Connector();
 
-
     public List<Ticket> getActiveTickets() {
         List<Ticket> ticketList = new ArrayList<Ticket>();
         String query = "SELECT TICKET_ID, CREATED_BY, DESCRIPTION FROM TICKETS GROUP BY TICKET_ID, CREATED_BY, DESCRIPTION";
@@ -37,9 +36,10 @@ public class TicketDAO {
         return ticketList;
     }
 
-    public void addTicket(String ticketID, String creator, String description) {
-        String query = String.format("INSERT INTO TICKETS(TICKET_ID, CREATED_BY, DESCRIPTION)"
-                + "values('%1$s', '%2$s', '%3$s')", ticketID, creator, description);
+
+    public void addTicket(String creator, String description) {
+        String query = String.format("INSERT INTO TICKETS( CREATED_BY, DESCRIPTION)"
+                + "values('%1$s' ,'%2$s')", creator, description);
         Connection conn = connector.getConnection();
 
         try {
@@ -62,25 +62,4 @@ public class TicketDAO {
             System.out.println(e.getMessage());
         }
     }
-
-    public int getLatestID() {
-        String query = "SELECT MAX(TICKET_ID) FROM TICKETS";
-        Connection conn = connector.getConnection();
-        int ID = 1;
-        try {
-            Statement statement = conn.createStatement();
-            ResultSet resultSet;
-            resultSet = statement.executeQuery(query);
-
-            ID =  Integer.getInteger(resultSet.getString(1));
-
-            statement.close();
-        } catch (Exception e) {
-            System.out.println("EXCEPTION CAUGHT:");
-            System.out.println(e.getMessage());
-        }
-        return ID;
-    }
-
-
 }
