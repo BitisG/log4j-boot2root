@@ -11,15 +11,19 @@ create table APP_USER
 
 create table TICKETS
   (
-    TICKET_ID       VARCHAR(6) not null,
+    TICKET_ID       int not null AUTO_INCREMENT,
     CREATED_BY      VARCHAR(25) not null,
-    DESCRIPTION     VARCHAR(1000)
+    DESCRIPTION     VARCHAR(1000),
+    PRIMARY KEY(TICKET_ID)
   );
 
-alter table TICKETS
-  add constraint TICKET_PK primary key (TICKET_ID);
 
-  insert into TICKETS(TICKET_ID,CREATED_BY,DESCRIPTION) values(1,'admin','This is a testing ticket!');
+
+insert into TICKETS(CREATED_BY,DESCRIPTION) values('admin','This is a testing ticket!');
+insert into TICKETS(CREATED_BY,DESCRIPTION) values('Peter','My current system used for developing does not work. HELP');
+insert into TICKETS(CREATED_BY,DESCRIPTION) values('Peter','I dont know how, but i got sand in my computer');
+insert into TICKETS(CREATED_BY,DESCRIPTION) values('admin','Migrate the webapplications logging functionality from Log4j to Logback');
+
   
 alter table APP_USER
   add constraint APP_USER_PK primary key (USER_ID);
