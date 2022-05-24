@@ -1,0 +1,53 @@
+---- Minecraft Crash Report ----
+// On the bright side, I bought you a teddy bear!
+
+Time: 5/16/22 10:01 AM
+Description: Exception in server tick loop
+
+org.apache.logging.log4j.core.appender.AppenderLoggingException: An exception occurred processing Appender ServerGuiConsole
+	at org.apache.logging.log4j.core.appender.DefaultErrorHandler.error(DefaultErrorHandler.java:73)
+	at org.apache.logging.log4j.core.config.AppenderControl.callAppender(AppenderControl.java:101)
+	at org.apache.logging.log4j.core.config.LoggerConfig.callAppenders(LoggerConfig.java:425)
+	at org.apache.logging.log4j.core.config.LoggerConfig.log(LoggerConfig.java:406)
+	at org.apache.logging.log4j.core.config.LoggerConfig.log(LoggerConfig.java:367)
+	at org.apache.logging.log4j.core.Logger.log(Logger.java:110)
+	at org.apache.logging.log4j.spi.AbstractLogger.warn(AbstractLogger.java:1918)
+	at j.a(SourceFile:94)
+	at j.a(SourceFile:63)
+	at ko.aO(SourceFile:332)
+	at ko.B(SourceFile:300)
+	at net.minecraft.server.MinecraftServer.A(SourceFile:535)
+	at net.minecraft.server.MinecraftServer.run(SourceFile:451)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.ClassCastException: javax.naming.Reference cannot be cast to java.lang.String
+	at org.apache.logging.log4j.core.lookup.JndiLookup.lookup(JndiLookup.java:58)
+	at org.apache.logging.log4j.core.lookup.Interpolator.lookup(Interpolator.java:121)
+	at org.apache.logging.log4j.core.lookup.StrSubstitutor.resolveVariable(StrSubstitutor.java:904)
+	at org.apache.logging.log4j.core.lookup.StrSubstitutor.substitute(StrSubstitutor.java:825)
+	at org.apache.logging.log4j.core.lookup.StrSubstitutor.substitute(StrSubstitutor.java:737)
+	at org.apache.logging.log4j.core.lookup.StrSubstitutor.replace(StrSubstitutor.java:306)
+	at org.apache.logging.log4j.core.pattern.MessagePatternConverter.format(MessagePatternConverter.java:71)
+	at org.apache.logging.log4j.core.pattern.PatternFormatter.format(PatternFormatter.java:36)
+	at org.apache.logging.log4j.core.layout.PatternLayout.toSerializable(PatternLayout.java:167)
+	at org.apache.logging.log4j.core.layout.PatternLayout.toSerializable(PatternLayout.java:52)
+	at com.mojang.util.QueueLogAppender.append(QueueLogAppender.java:39)
+	at org.apache.logging.log4j.core.config.AppenderControl.callAppender(AppenderControl.java:99)
+	... 12 more
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8.8
+	Operating System: Linux (i386) version 5.16.0-kali7-amd64
+	Java Version: 1.8.0_181, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) Server VM (mixed mode), Oracle Corporation
+	Memory: 750509104 bytes (715 MB) / 954728448 bytes (910 MB) up to 954728448 bytes (910 MB)
+	JVM Flags: 2 total; -Xmx1024M -Xms1024M
+	IntCache: cache: 0, tcache: 0, allocated: 13, tallocated: 95
+	Profiler Position: N/A (disabled)
+	Player Count: 0 / 20; []
+	Is Modded: Unknown (can't tell)
+	Type: Dedicated Server (map_server.txt)

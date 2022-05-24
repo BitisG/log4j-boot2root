@@ -1,0 +1,271 @@
+---- Minecraft Crash Report ----
+// This doesn't make any sense!
+
+Time: 09/05/22 12:54
+Description: Watching Server
+
+java.lang.Error
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at java.net.Socket.connect(Socket.java:538)
+	at java.net.Socket.<init>(Socket.java:434)
+	at java.net.Socket.<init>(Socket.java:211)
+	at com.sun.jndi.ldap.Connection.createSocket(Connection.java:375)
+	at com.sun.jndi.ldap.Connection.<init>(Connection.java:215)
+	at com.sun.jndi.ldap.LdapClient.<init>(LdapClient.java:137)
+	at com.sun.jndi.ldap.LdapClient.getInstance(LdapClient.java:1615)
+	at com.sun.jndi.ldap.LdapCtx.connect(LdapCtx.java:2749)
+	at com.sun.jndi.ldap.LdapCtx.<init>(LdapCtx.java:319)
+	at com.sun.jndi.url.ldap.ldapURLContextFactory.getUsingURLIgnoreRootDN(ldapURLContextFactory.java:60)
+	at com.sun.jndi.url.ldap.ldapURLContext.getRootURLContext(ldapURLContext.java:61)
+	at com.sun.jndi.toolkit.url.GenericURLContext.lookup(GenericURLContext.java:202)
+	at com.sun.jndi.url.ldap.ldapURLContext.lookup(ldapURLContext.java:94)
+	at javax.naming.InitialContext.lookup(InitialContext.java:417)
+	at org.apache.logging.log4j.core.lookup.JndiLookup.lookup(JndiLookup.java:58)
+	at org.apache.logging.log4j.core.lookup.Interpolator.lookup(Interpolator.java:121)
+	at org.apache.logging.log4j.core.lookup.StrSubstitutor.resolveVariable(StrSubstitutor.java:904)
+	at org.apache.logging.log4j.core.lookup.StrSubstitutor.substitute(StrSubstitutor.java:825)
+	at org.apache.logging.log4j.core.lookup.StrSubstitutor.substitute(StrSubstitutor.java:737)
+	at org.apache.logging.log4j.core.lookup.StrSubstitutor.replace(StrSubstitutor.java:306)
+	at org.apache.logging.log4j.core.pattern.MessagePatternConverter.format(MessagePatternConverter.java:71)
+	at org.apache.logging.log4j.core.pattern.PatternFormatter.format(PatternFormatter.java:36)
+	at org.apache.logging.log4j.core.layout.PatternLayout.toSerializable(PatternLayout.java:167)
+	at org.apache.logging.log4j.core.layout.PatternLayout.toSerializable(PatternLayout.java:52)
+	at com.mojang.util.QueueLogAppender.append(QueueLogAppender.java:39)
+	at org.apache.logging.log4j.core.config.AppenderControl.callAppender(AppenderControl.java:99)
+	at org.apache.logging.log4j.core.config.LoggerConfig.callAppenders(LoggerConfig.java:425)
+	at org.apache.logging.log4j.core.config.LoggerConfig.log(LoggerConfig.java:406)
+	at org.apache.logging.log4j.core.config.LoggerConfig.log(LoggerConfig.java:367)
+	at org.apache.logging.log4j.core.Logger.log(Logger.java:110)
+	at org.apache.logging.log4j.spi.AbstractLogger.info(AbstractLogger.java:1011)
+	at net.minecraft.server.MinecraftServer.a(SourceFile:871)
+	at lx.a(SourceFile:782)
+	at lx.a(SourceFile:788)
+	at bb.a(SourceFile:38)
+	at j.a(SourceFile:80)
+	at j.a(SourceFile:63)
+	at ko.aO(SourceFile:332)
+	at ko.B(SourceFile:300)
+	at net.minecraft.server.MinecraftServer.A(SourceFile:535)
+	at net.minecraft.server.MinecraftServer.run(SourceFile:451)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at java.net.Socket.connect(Socket.java:538)
+	at java.net.Socket.<init>(Socket.java:434)
+	at java.net.Socket.<init>(Socket.java:211)
+	at com.sun.jndi.ldap.Connection.createSocket(Connection.java:375)
+	at com.sun.jndi.ldap.Connection.<init>(Connection.java:215)
+	at com.sun.jndi.ldap.LdapClient.<init>(LdapClient.java:137)
+	at com.sun.jndi.ldap.LdapClient.getInstance(LdapClient.java:1615)
+	at com.sun.jndi.ldap.LdapCtx.connect(LdapCtx.java:2749)
+	at com.sun.jndi.ldap.LdapCtx.<init>(LdapCtx.java:319)
+	at com.sun.jndi.url.ldap.ldapURLContextFactory.getUsingURLIgnoreRootDN(ldapURLContextFactory.java:60)
+	at com.sun.jndi.url.ldap.ldapURLContext.getRootURLContext(ldapURLContext.java:61)
+	at com.sun.jndi.toolkit.url.GenericURLContext.lookup(GenericURLContext.java:202)
+	at com.sun.jndi.url.ldap.ldapURLContext.lookup(ldapURLContext.java:94)
+	at javax.naming.InitialContext.lookup(InitialContext.java:417)
+	at org.apache.logging.log4j.core.lookup.JndiLookup.lookup(JndiLookup.java:58)
+	at org.apache.logging.log4j.core.lookup.Interpolator.lookup(Interpolator.java:121)
+	at org.apache.logging.log4j.core.lookup.StrSubstitutor.resolveVariable(StrSubstitutor.java:904)
+	at org.apache.logging.log4j.core.lookup.StrSubstitutor.substitute(StrSubstitutor.java:825)
+	at org.apache.logging.log4j.core.lookup.StrSubstitutor.substitute(StrSubstitutor.java:737)
+	at org.apache.logging.log4j.core.lookup.StrSubstitutor.replace(StrSubstitutor.java:306)
+	at org.apache.logging.log4j.core.pattern.MessagePatternConverter.format(MessagePatternConverter.java:71)
+	at org.apache.logging.log4j.core.pattern.PatternFormatter.format(PatternFormatter.java:36)
+	at org.apache.logging.log4j.core.layout.PatternLayout.toSerializable(PatternLayout.java:167)
+	at org.apache.logging.log4j.core.layout.PatternLayout.toSerializable(PatternLayout.java:52)
+	at com.mojang.util.QueueLogAppender.append(QueueLogAppender.java:39)
+	at org.apache.logging.log4j.core.config.AppenderControl.callAppender(AppenderControl.java:99)
+	at org.apache.logging.log4j.core.config.LoggerConfig.callAppenders(LoggerConfig.java:425)
+	at org.apache.logging.log4j.core.config.LoggerConfig.log(LoggerConfig.java:406)
+	at org.apache.logging.log4j.core.config.LoggerConfig.log(LoggerConfig.java:367)
+	at org.apache.logging.log4j.core.Logger.log(Logger.java:110)
+	at org.apache.logging.log4j.spi.AbstractLogger.info(AbstractLogger.java:1011)
+	at net.minecraft.server.MinecraftServer.a(SourceFile:871)
+	at lx.a(SourceFile:782)
+	at lx.a(SourceFile:788)
+	at bb.a(SourceFile:38)
+	at j.a(SourceFile:80)
+	at j.a(SourceFile:63)
+	at ko.aO(SourceFile:332)
+	at ko.B(SourceFile:300)
+	at net.minecraft.server.MinecraftServer.A(SourceFile:535)
+
+-- Thread Dump --
+Details:
+	Threads: "File IO Thread" Id=43 TIMED_WAITING
+	at java.lang.Thread.sleep(Native Method)
+	at auc.c(SourceFile:51)
+	at auc.run(SourceFile:30)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+"Server Watchdog" Id=42 RUNNABLE
+	at sun.management.ThreadImpl.dumpThreads0(Native Method)
+	at sun.management.ThreadImpl.dumpAllThreads(ThreadImpl.java:454)
+	at kp.run(SourceFile:43)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+"Netty Server IO #0" Id=25 RUNNABLE (in native)
+	at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll0(Native Method)
+	at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll(WindowsSelectorImpl.java:296)
+	at sun.nio.ch.WindowsSelectorImpl$SubSelector.access$400(WindowsSelectorImpl.java:278)
+	at sun.nio.ch.WindowsSelectorImpl.doSelect(WindowsSelectorImpl.java:159)
+	at sun.nio.ch.SelectorImpl.lockAndDoSelect(SelectorImpl.java:86)
+	-  locked io.netty.channel.nio.SelectedSelectionKeySet@5ee119
+	-  locked java.util.Collections$UnmodifiableSet@991722
+	-  locked sun.nio.ch.WindowsSelectorImpl@a68a69
+	at sun.nio.ch.SelectorImpl.select(SelectorImpl.java:97)
+	at io.netty.channel.nio.NioEventLoop.select(NioEventLoop.java:622)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:310)
+	...
+
+
+"DestroyJavaVM" Id=22 RUNNABLE
+
+
+"Server thread" Id=20 RUNNABLE (in native)
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	-  locked java.net.DualStackPlainSocketImpl@1a41d19
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	...
+
+
+"TimerQueue" Id=18 TIMED_WAITING on java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@6353b0
+	at sun.misc.Unsafe.park(Native Method)
+	-  waiting on java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@6353b0
+	at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+	at java.util.concurrent.DelayQueue.take(DelayQueue.java:223)
+	at javax.swing.TimerQueue.run(TimerQueue.java:174)
+	at java.lang.Thread.run(Thread.java:748)
+
+	Number of locked synchronizers = 1
+	- java.util.concurrent.locks.ReentrantLock$NonfairSync@47739d
+
+
+"Thread-4" Id=17 WAITING on java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@6a6397
+	at sun.misc.Unsafe.park(Native Method)
+	-  waiting on java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@6a6397
+	at java.util.concurrent.locks.LockSupport.park(LockSupport.java:175)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2039)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at com.mojang.util.QueueLogAppender.getNextLogEvent(QueueLogAppender.java:77)
+	at kr$4.run(SourceFile:114)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+"AWT-EventQueue-0" Id=16 RUNNABLE
+	at java.security.AccessController.getStackAccessControlContext(Native Method)
+	at java.security.AccessController.getContext(AccessController.java:820)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:724)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:205)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	...
+
+
+"AWT-Windows" Id=14 RUNNABLE (in native)
+	at sun.awt.windows.WToolkit.eventLoop(Native Method)
+	at sun.awt.windows.WToolkit.run(WToolkit.java:313)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+"AWT-Shutdown" Id=13 WAITING on java.lang.Object@18be256
+	at java.lang.Object.wait(Native Method)
+	-  waiting on java.lang.Object@18be256
+	at java.lang.Object.wait(Object.java:502)
+	at sun.awt.AWTAutoShutdown.run(AWTAutoShutdown.java:295)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+"Java2D Disposer" Id=12 WAITING on java.lang.ref.ReferenceQueue$Lock@53afe1
+	at java.lang.Object.wait(Native Method)
+	-  waiting on java.lang.ref.ReferenceQueue$Lock@53afe1
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:144)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:165)
+	at sun.java2d.Disposer.run(Disposer.java:148)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+"Server Infinisleeper" Id=11 TIMED_WAITING
+	at java.lang.Thread.sleep(Native Method)
+	at ko$1.run(SourceFile:65)
+
+
+"Snooper Timer" Id=10 TIMED_WAITING on java.util.TaskQueue@8b8f48
+	at java.lang.Object.wait(Native Method)
+	-  waiting on java.util.TaskQueue@8b8f48
+	at java.util.TimerThread.mainLoop(Timer.java:552)
+	at java.util.TimerThread.run(Timer.java:505)
+
+
+"Attach Listener" Id=5 RUNNABLE
+
+
+"Signal Dispatcher" Id=4 RUNNABLE
+
+
+"Finalizer" Id=3 WAITING on java.lang.ref.ReferenceQueue$Lock@16e2b15
+	at java.lang.Object.wait(Native Method)
+	-  waiting on java.lang.ref.ReferenceQueue$Lock@16e2b15
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:144)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:165)
+	at java.lang.ref.Finalizer$FinalizerThread.run(Finalizer.java:216)
+
+
+"Reference Handler" Id=2 WAITING on java.lang.ref.Reference$Lock@1c5fb7c
+	at java.lang.Object.wait(Native Method)
+	-  waiting on java.lang.ref.Reference$Lock@1c5fb7c
+	at java.lang.Object.wait(Object.java:502)
+	at java.lang.ref.Reference.tryHandlePending(Reference.java:191)
+	at java.lang.ref.Reference$ReferenceHandler.run(Reference.java:153)
+
+
+
+Stacktrace:
+	at kp.run(SourceFile:59)
+	at java.lang.Thread.run(Thread.java:748)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8.8
+	Operating System: Windows 10 (x86) version 10.0
+	Java Version: 1.8.0_181, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) Client VM (mixed mode, sharing), Oracle Corporation
+	Memory: 149330800 bytes (142 MB) / 206868480 bytes (197 MB) up to 259522560 bytes (247 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 11, tcache: 0, allocated: 13, tallocated: 95
+	Profiler Position: N/A (disabled)
+	Player Count: 0 / 20; []
+	Is Modded: Unknown (can't tell)
+	Type: Dedicated Server (map_server.txt)
