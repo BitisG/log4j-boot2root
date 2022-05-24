@@ -3,7 +3,6 @@ package dtu.project.log4jboot2root;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class TicketService {
