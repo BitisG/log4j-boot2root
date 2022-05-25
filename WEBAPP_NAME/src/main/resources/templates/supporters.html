@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <style>table, th, td {
+        border: 1px solid black;
+    }
+
+    th, td {
+        padding: 15px;
+    }
+    </style>
+    <meta charset="UTF-8"/>
+    <title>Support Engineers</title>
+    <link href="assets/styles.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row vh-100">
+        <div class="col-3" style="background-color: #5E7996"></div>
+        <div class="col-6">
+            <div class="row" style="justify-content: center">
+                <h1>Search for supporters below</h1>
+            </div>
+            <div class="row justify-content-md-center">
+                <div class="row">
+                    <table class="table-bordered">
+                        <tr>
+                            <th>User ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr>
+                        <tr th:each="appUser: ${users}">
+                            <td th:text="${appUser.getUserID}"></td>
+                            <td th:text="${appUser.getUsername}"></td>
+                            <td th:text="${appUser.getEmail}"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row">
+                    <form action="searchUsers" method="POST">
+                        <div style="overflow-y:auto">
+                            <b>Name (use % as a wildcard)</b><br></br>
+                            <textarea rows="6" style="min-width: 100%" name="name"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-3" style="background-color: #5E7996"></div>
+    </div>
+
+</div>
+<!--For debugging purposes, the query executed by the database from this page is:
+ SELECT USER_ID, USER_NAME FROM APP_USER WHERE USER_NAME LIKE 'INPUT HERE'; -->
+</body>
+<!--
+<body>
+<h1>Search for supporters below</h1>
+<table>
+    <tr>
+        <th>User ID</th>
+        <th>Name</th>
+        <th>Email</th>
+    </tr>
+    <tr th:each="appUser: ${users}">
+        <td th:text="${appUser.getUserID}"></td>
+        <td th:text="${appUser.getUsername}"></td>
+        <td th:text="${appUser.getEmail}"></td>
+    </tr>
+</table>
+<form action="searchUsers" method="POST">
+    <div style="max-height:70%; overflow-y:auto;">
+        <b>Name (use % as a wildcard)</b><br><br>
+        <textarea rows="6" cols="50" style="width: 35%;" name="name"></textarea>
+    </div>
+    <div class="modal-footer">
+        <input type="submit" value="Submit">
+    </div>
+    For debugging purposes, the query executed by the database from this page is:
+     SELECT USER_ID, USER_NAME FROM APP_USER WHERE USER_NAME LIKE 'INPUT HERE';
+
+</form>
+</body>
+-->
+</html>

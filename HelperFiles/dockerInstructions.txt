@@ -1,0 +1,16 @@
+To compile the project yourself,compile the project into a jar in intellij with the command: 
+./mvnw package; java -jar target/log4j-boot2root-0.0.1-SNAPSHOT.jar
+
+or in the commandline if you choose to do so, by running the command:
+
+.mvn clean package
+
+Otherwise we provide a jar that you can run without compiling anything.
+
+You need to build the docker image. We have already provided a dockerfile and a docker-compose.yml. Run the commands:
+docker-compose build
+docker-compose up
+
+This will launch the application and the database in two different docker containers
+
+You can view the application by entering localhost:8080 in the searchbar of your search engine.
