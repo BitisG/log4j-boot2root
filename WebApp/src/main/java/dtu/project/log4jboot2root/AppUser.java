@@ -25,12 +25,6 @@ public class AppUser implements UserDetails { //Represents a record in the APP_U
         this.email = email;
         this.password = password;
     }
-    public AppUser(String username, String password, List<GrantedAuthority> authorityList){
-        //used in UserDetailsServiceImpl
-        this.username = username;
-        this.password = password;
-        this.authorities = authorityList;
-    }
 
     public Long getUserID() {
         return userID;

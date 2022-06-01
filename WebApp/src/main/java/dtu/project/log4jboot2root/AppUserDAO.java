@@ -1,5 +1,6 @@
 package dtu.project.log4jboot2root;
 
+import org.springframework.stereotype.Repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,22 +8,24 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class AppUserDAO {
     Connector connector = new Connector();
-    Connection conn = connector.getConnection();
+    
 
     public List<AppUser> findUsers(String username) {
         List<AppUser> userList = new ArrayList<AppUser>();
         String query = String.format("SELECT USER_ID, USER_NAME, EMAIL FROM APP_USER WHERE USER_NAME LIKE "
                 + "'%s'", username);
         Connection conn = connector.getConnection();
-
         try {
+            
             Statement statement = conn.createStatement();
             ResultSet resultSet;
             resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
+
                 AppUser appUser = new AppUser();
                 appUser.setUserID(Long.valueOf(resultSet.getString(1)));
                 appUser.setUsername(resultSet.getString(2));
@@ -44,6 +47,7 @@ public class AppUserDAO {
         Connection conn = connector.getConnection();
         
         try {
+            
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setString(1,username);
             ResultSet resultSet = statement.executeQuery();

@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
-    private SpringSecurityDAO appUserDAO;
+    private AppUserDAO appUserDAO;
 
     @Autowired
     private AppRoleDAO appRoleDAO;
@@ -23,7 +23,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AppUser appUser = this.appUserDAO.findUserAccount(username);
+        AppUser appUser = this.appUserDAO.findUser(username);
 
         if (appUser == null) {
             String err = "user with name: " + username + " not found";

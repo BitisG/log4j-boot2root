@@ -42,9 +42,10 @@ public class TicketDAO {
     public void addTicket(String creator, String description) {
         String query = String.format("INSERT INTO TICKETS( CREATED_BY, DESCRIPTION)"
                 + "values('%1$s' ,'%2$s')", creator, description);
-        Connection conn = connector.getConnection();
+        
 
         try {
+            Connection conn = connector.getConnection();
             Statement statement = conn.createStatement();
             statement.execute(query);
             statement.closeOnCompletion();
@@ -55,8 +56,9 @@ public class TicketDAO {
 
     public void deleteTicket(String ticketID) {
         String query = String.format("DELETE FROM TICKETS WHERE TICKET_ID = '%1$s'", ticketID);
-        Connection conn = connector.getConnection();
+        
         try {
+            Connection conn = connector.getConnection();
             Statement statement = conn.createStatement();
             statement.execute(query);
             statement.closeOnCompletion();
