@@ -11,13 +11,12 @@ public class TicketDAO {
     Connector connector = new Connector();
     
 
-    public List<Ticket> getActiveTickets() {
+    public List<Ticket> getActiveTickets() throws SQLException {
         List<Ticket> ticketList = new ArrayList<Ticket>();
         String query = "SELECT TICKET_ID, CREATED_BY, DESCRIPTION FROM TICKETS GROUP BY TICKET_ID, CREATED_BY, DESCRIPTION";
-        
+        Connection conn = connector.getConnection();
 
         try {
-            Connection conn = connector.getConnection();
             Statement statement = conn.createStatement();
             ResultSet resultSet;
             resultSet = statement.executeQuery(query);
@@ -31,38 +30,45 @@ public class TicketDAO {
             }
 
             statement.close();
+            conn.close();
         } catch (Exception e) {
-            System.out.println("EXCEPTION CAUGHT:");
+            conn.close();
+            System.out.println("EXCEPTION CAUGHT IN TICKETDAO: giveActiveTickets():");
             System.out.println(e.getMessage());
         }
         return ticketList;
     }
 
 
-    public void addTicket(String creator, String description) {
+    public void addTicket(String creator, String description) throws SQLException {
         String query = String.format("INSERT INTO TICKETS( CREATED_BY, DESCRIPTION)"
                 + "values('%1$s' ,'%2$s')", creator, description);
-        
+        Connection conn = connector.getConnection();
 
         try {
-            Connection conn = connector.getConnection();
             Statement statement = conn.createStatement();
             statement.execute(query);
             statement.closeOnCompletion();
+            conn.close();
         } catch (Exception e) {
+            conn.close();
+            System.out.println("EXCEPTION CAUGHT IN TICKETDAO: addTicket():");
             System.out.println(e.getMessage());
         }
     }
 
-    public void deleteTicket(String ticketID) {
+    public void deleteTicket(String ticketID) throws SQLException {
         String query = String.format("DELETE FROM TICKETS WHERE TICKET_ID = '%1$s'", ticketID);
-        
+        Connection conn = connector.getConnection();
+
         try {
-            Connection conn = connector.getConnection();
             Statement statement = conn.createStatement();
             statement.execute(query);
             statement.closeOnCompletion();
+            conn.close();
         } catch (Exception e) {
+            conn.close();
+            System.out.println("EXCEPTION CAUGHT IN TICKETDAO: deleteTicket():");
             System.out.println(e.getMessage());
         }
     }

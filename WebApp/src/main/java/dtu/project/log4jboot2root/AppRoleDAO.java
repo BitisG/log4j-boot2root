@@ -8,7 +8,6 @@ import javax.sql.DataSource;
 import java.util.List;
 
 @Repository
-@Transactional
 public class AppRoleDAO extends JdbcDaoSupport {
 
     @Autowired

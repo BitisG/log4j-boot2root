@@ -1,10 +1,8 @@
 package dtu.project.log4jboot2root;
 
 import org.springframework.stereotype.Repository;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +11,7 @@ public class AppUserDAO {
     Connector connector = new Connector();
     
 
-    public List<AppUser> findUsers(String username) {
+    public List<AppUser> findUsers(String username) throws SQLException {
         List<AppUser> userList = new ArrayList<AppUser>();
         String query = String.format("SELECT USER_ID, USER_NAME, EMAIL FROM APP_USER WHERE USER_NAME LIKE "
                 + "'%s'", username);
@@ -34,8 +32,11 @@ public class AppUserDAO {
             }
 
             statement.close();
+            conn.close();
+
         } catch (Exception e) {
-            System.out.println("EXCEPTION CAUGHT:");
+            conn.close();
+            System.out.println("EXCEPTION CAUGHT IN APPUSERDAO: findUsers():");
             System.out.println(e.getMessage());
         }
         return userList;
@@ -60,9 +61,10 @@ public class AppUserDAO {
             user.setPassword(resultSet.getString(4));
 
             statement.close();
+            conn.close();
             
         } catch (Exception e) {
-            System.out.println("EXCEPTION CAUGHT:");
+            System.out.println("EXCEPTION CAUGHT IN APPUSERDAO: findUsers():");
             System.out.println(e.getMessage());
         }
         return user;

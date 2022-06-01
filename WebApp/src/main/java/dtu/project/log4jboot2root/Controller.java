@@ -79,7 +79,7 @@ public class Controller {
     ResourceLoader loader;
     private static final Logger logger = LogManager.getLogger();
 
-    @RequestMapping(value = {"/"}, method = RequestMethod.GET)
+    @GetMapping(value = {"/"})
     public String index(Model model) {
         return "WelcomePage";
     }
