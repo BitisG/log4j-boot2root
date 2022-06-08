@@ -10,14 +10,13 @@ public class AppUserService {
 
     private AppUserDAO appUserDAO = new AppUserDAO();
 
-    public List getUser(String username) {
-        List list = null;
+    public Object[] getUser(String username) {
+        Object list[] = null;
         try {
             list = appUserDAO.findUsers(username);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("EXCEPTION CAUGHT IN APPUSERSERVICE: getUser():");
             System.out.println(e.getMessage());
-
         }
         return list;
     }

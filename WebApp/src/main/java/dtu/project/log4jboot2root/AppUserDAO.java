@@ -11,11 +11,13 @@ public class AppUserDAO {
     Connector connector = new Connector();
     
 
-    public List<AppUser> findUsers(String username) throws SQLException {
+    public Object[] findUsers(String username) throws SQLException {
+
         List<AppUser> userList = new ArrayList<AppUser>();
         String query = String.format("SELECT USER_ID, USER_NAME, EMAIL FROM APP_USER WHERE USER_NAME LIKE "
                 + "'%s'", username);
         Connection conn = connector.getConnection();
+        Exception error = null;
         try {
             
             Statement statement = conn.createStatement();
@@ -36,10 +38,12 @@ public class AppUserDAO {
 
         } catch (Exception e) {
             conn.close();
+            error = e;
             System.out.println("EXCEPTION CAUGHT IN APPUSERDAO: findUsers():");
             System.out.println(e.getMessage());
         }
-        return userList;
+        Object list[] = {userList,error};
+        return list;
     }
 
     public AppUser findUser(String username) {

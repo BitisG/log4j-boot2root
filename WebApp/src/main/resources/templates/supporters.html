@@ -46,6 +46,9 @@
                     <form action="searchUsers" method="POST">
                         <div style="overflow-y:auto">
                             <b>Name (use % as a wildcard)</b><br></br>
+                            <div class="row">
+                                <div th:if="${error != null}" th:utext="${error.getMessage}" style="color:crimson;"></div>
+                            </div>
                             <textarea rows="6" style="min-width: 100%" name="name"></textarea>
                         </div>
                         <div class="modal-footer">

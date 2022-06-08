@@ -48,7 +48,13 @@ public class Controller {
 
     @PostMapping("/searchUsers")
     public String searchUsers(@RequestParam("name") String name, Map<String, Object> model) {
-        model.put("users", appUserService.getUser(name));
+        Object list[] = appUserService.getUser(name);
+        
+        model.put("users", list[0]);
+        if (list[1] != null) {
+            model.put("error", list[1]);
+        }
+
         return "supporters";
     }
 
