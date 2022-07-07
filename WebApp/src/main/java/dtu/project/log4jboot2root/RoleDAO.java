@@ -3,15 +3,14 @@ package dtu.project.log4jboot2root;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import javax.sql.DataSource;
 import java.util.List;
 
 @Repository
-public class AppRoleDAO extends JdbcDaoSupport {
+public class RoleDAO extends JdbcDaoSupport {
 
     @Autowired
-    public AppRoleDAO(DataSource dataSource) {
+    public RoleDAO(DataSource dataSource) {
         this.setDataSource(dataSource);
     }
 

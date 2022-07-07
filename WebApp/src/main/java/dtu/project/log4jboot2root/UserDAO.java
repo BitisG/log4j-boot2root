@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class AppUserDAO {
+public class UserDAO {
     Connector connector = new Connector();
     
 
     public Object[] findUsers(String username) throws SQLException {
 
-        List<AppUser> userList = new ArrayList<AppUser>();
+        List<User> userList = new ArrayList<User>();
         String query = String.format("SELECT USER_ID, USER_NAME, EMAIL FROM APP_USER WHERE USER_NAME LIKE "
                 + "'%s'", username);
         Connection conn = connector.getConnection();
@@ -26,11 +26,11 @@ public class AppUserDAO {
 
             while (resultSet.next()) {
 
-                AppUser appUser = new AppUser();
-                appUser.setUserID(Long.valueOf(resultSet.getString(1)));
-                appUser.setUsername(resultSet.getString(2));
-                appUser.setEmail(resultSet.getString(3));
-                userList.add(appUser);
+                User user = new User();
+                user.setUserID(Long.valueOf(resultSet.getString(1)));
+                user.setUsername(resultSet.getString(2));
+                user.setEmail(resultSet.getString(3));
+                userList.add(user);
             }
 
             statement.close();
@@ -46,8 +46,8 @@ public class AppUserDAO {
         return list;
     }
 
-    public AppUser findUser(String username) {
-        AppUser user = new AppUser();
+    public User findSingleUser(String username) {
+        User user = new User();
         String query = "SELECT USER_ID, USER_NAME, EMAIL, PASSWORD FROM APP_USER WHERE USER_NAME = ?";
         Connection conn = connector.getConnection();
         

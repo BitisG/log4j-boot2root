@@ -1,19 +1,16 @@
 package dtu.project.log4jboot2root;
-
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLException;
-import java.util.List;
 
 @Service
-public class AppUserService {
+public class UserService {
 
-    private AppUserDAO appUserDAO = new AppUserDAO();
+    private UserDAO userDAO = new UserDAO();
 
     public Object[] getUser(String username) {
         Object list[] = null;
         try {
-            list = appUserDAO.findUsers(username);
+            list = userDAO.findUsers(username);
         } catch (Exception e) {
             System.out.println("EXCEPTION CAUGHT IN APPUSERSERVICE: getUser():");
             System.out.println(e.getMessage());
@@ -21,5 +18,8 @@ public class AppUserService {
         return list;
     }
 
-
+    public String getUsername(Object principal) {
+        User user = (User) principal;
+        return user.getUsername();
+    }
 }

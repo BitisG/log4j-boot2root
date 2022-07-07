@@ -3,9 +3,6 @@ package dtu.project.log4jboot2root;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-
-
-
 public class Connector {
 
     public Connector(){};

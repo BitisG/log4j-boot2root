@@ -14,23 +14,23 @@ import java.util.List;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
-    private AppUserDAO appUserDAO;
+    private UserDAO userDAO;
 
     @Autowired
-    private AppRoleDAO appRoleDAO;
+    private RoleDAO roleDAO;
 
 
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AppUser appUser = this.appUserDAO.findUser(username);
+        User user = this.userDAO.findSingleUser(username);
 
-        if (appUser == null) {
+        if (user == null) {
             String err = "user with name: " + username + " not found";
             throw new UsernameNotFoundException(err);
         }
 
-        List<String> roles = this.appRoleDAO.getRoleName(appUser.getUserID());
+        List<String> roles = this.roleDAO.getRoleName(user.getUserID());
         List<GrantedAuthority> grants = new ArrayList<GrantedAuthority>();
         if (roles != null) {
             for (String role: roles) {
@@ -38,9 +38,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 grants.add(authority);
             }
         }
-        appUser.setAuthorities(grants);
+        user.setAuthorities(grants);
 
         //return (UserDetails) new AppUser(appUser.getUsername(), appUser.getPassword(), grants);
-        return appUser;
+        return user;
     }
 }
