@@ -15,7 +15,7 @@ public class RoleDAO extends JdbcDaoSupport {
     }
 
     public List<String> getRoleName(Long userID) {
-        String sql = "select r.ROLE_NAME from USER_ROLE ur, APP_ROLE r where ur.ROLE_ID = r.ROLE_ID and ur.USER_ID = ? ";
+        String sql = "select r.ROLE_NAME from USER_ROLE ur, ROLE r where ur.ROLE_ID = r.ROLE_ID and ur.USER_ID = ? ";
 
         Object[] list = new Object[] {userID};
 

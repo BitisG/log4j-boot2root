@@ -14,7 +14,7 @@ public class UserDAO {
     public Object[] findUsers(String username) throws SQLException {
 
         List<User> userList = new ArrayList<User>();
-        String query = String.format("SELECT USER_ID, USER_NAME, EMAIL FROM APP_USER WHERE USER_NAME LIKE "
+        String query = String.format("SELECT USER_ID, USER_NAME, EMAIL FROM USER WHERE USER_NAME LIKE "
                 + "'%s'", username);
         Connection conn = connector.getConnection();
         Exception error = null;
@@ -48,7 +48,7 @@ public class UserDAO {
 
     public User findSingleUser(String username) {
         User user = new User();
-        String query = "SELECT USER_ID, USER_NAME, EMAIL, PASSWORD FROM APP_USER WHERE USER_NAME = ?";
+        String query = "SELECT USER_ID, USER_NAME, EMAIL, PASSWORD FROM USER WHERE USER_NAME = ?";
         Connection conn = connector.getConnection();
         
         try {
