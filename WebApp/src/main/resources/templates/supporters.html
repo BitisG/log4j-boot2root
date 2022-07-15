@@ -35,10 +35,10 @@
                             <th>Name</th>
                             <th>Email</th>
                         </tr>
-                        <tr th:each="appUser: ${users}">
-                            <td th:text="${appUser.getUserID}"></td>
-                            <td th:text="${appUser.getUsername}"></td>
-                            <td th:text="${appUser.getEmail}"></td>
+                        <tr th:each="user: ${users}">
+                            <td th:text="${user.getUserID}"></td>
+                            <td th:text="${user.getUsername}"></td>
+                            <td th:text="${user.getEmail}"></td>
                         </tr>
                     </table>
                 </div>
@@ -74,10 +74,10 @@
         <th>Name</th>
         <th>Email</th>
     </tr>
-    <tr th:each="appUser: ${users}">
-        <td th:text="${appUser.getUserID}"></td>
-        <td th:text="${appUser.getUsername}"></td>
-        <td th:text="${appUser.getEmail}"></td>
+    <tr th:each="user: ${users}">
+        <td th:text="${user.getUserID}"></td>
+        <td th:text="${user.getUsername}"></td>
+        <td th:text="${user.getEmail}"></td>
     </tr>
 </table>
 <form action="searchUsers" method="POST">

@@ -2,8 +2,6 @@ package dtu.project.log4jboot2root;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.boot.jdbc.DataSourceBuilder;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,7 +11,6 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -25,16 +22,16 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 @org.springframework.stereotype.Controller
 public class Controller {
     private final TicketService ticketService;
-    private final AppUserService appUserService;
     ResourceLoader loader;
     private static final Logger logger = LogManager.getLogger();
+    private final UserService userService;
 
     //is used to get userdetails of currently logged in user
     //private Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-    public Controller(TicketService ticketService, AppUserService appUserService) {
+    public Controller(TicketService ticketService, UserService userService) {
         this.ticketService = ticketService;
-        this.appUserService = appUserService;
+        this.userService = userService;
     }
 
     @GetMapping("/tickets")
@@ -50,7 +47,7 @@ public class Controller {
 
     @PostMapping("/searchUsers")
     public String searchUsers(@RequestParam("name") String name, Map<String, Object> model) {
-        Object list[] = appUserService.getUser(name);
+        Object list[] = userService.getUser(name);
         
         model.put("users", list[0]);
         if (list[1] != null) {
@@ -70,8 +67,7 @@ public class Controller {
             System.out.println("Authentication Null");
         }
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            AppUser user = (AppUser) authentication.getPrincipal();
-            currentUserName = user.getUsername();
+            currentUserName = userService.getUsername(authentication.getPrincipal());
         }
         ticketService.addTicket(currentUserName, description);
         logger.warn("[+] ticket created with content: " + description);

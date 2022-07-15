@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-public class AppUser implements UserDetails { //Represents a record in the APP_USER table in DB
+public class User implements UserDetails { //Represents a record in the APP_USER table in DB
 
     private static final long serialVersionUID = 1L;
 
@@ -17,9 +17,9 @@ public class AppUser implements UserDetails { //Represents a record in the APP_U
 
     private List<GrantedAuthority> authorities=null;
 
-    public AppUser(){}
+    public User(){}
 
-    public AppUser(Long userID, String username, String email,String password) {
+    public User(Long userID, String username, String email, String password) {
         this.userID = userID;
         this.username = username;
         this.email = email;

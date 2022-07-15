@@ -2,7 +2,6 @@ package dtu.project.log4jboot2root;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.Level;
 public class main {
 
     private static final Logger logger = LogManager.getLogger();

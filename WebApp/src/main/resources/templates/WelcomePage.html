@@ -29,6 +29,7 @@
             <div class="float-end">
                 <a class="btn btn-secondary" href="/tickets">Tickets</a>
                 <a class="btn btn-secondary" href="/supporters">Supporters</a>
+                <a sec:authorize="isAuthenticated()" class="btn btn-secondary" href="/internal">Internal</a>
                 <a sec:authorize="isAuthenticated()" class="btn btn-secondary" href="/logout">Log Out</a>
                 <a sec:authorize="isAnonymous()" class="btn btn-primary" href="/login">Log In</a>
             </div>
