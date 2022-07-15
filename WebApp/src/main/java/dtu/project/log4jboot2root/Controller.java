@@ -26,6 +26,8 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public class Controller {
     private final TicketService ticketService;
     private final AppUserService appUserService;
+    ResourceLoader loader;
+    private static final Logger logger = LogManager.getLogger();
 
     //is used to get userdetails of currently logged in user
     //private Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -82,15 +84,10 @@ public class Controller {
         return "redirect:/tickets";
     }
 
-    ResourceLoader loader;
-    private static final Logger logger = LogManager.getLogger();
-
     @GetMapping(value = {"/"})
     public String index(Model model) {
         return "WelcomePage";
     }
-
-
 
     @GetMapping("/login")
     public String loginPage(Model model) {
